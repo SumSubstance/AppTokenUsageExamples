@@ -8,11 +8,11 @@ use GuzzleHttp;
 use GuzzleHttp\Psr7\MultipartStream;
 
 // The description of the authorization method is available here: https://developers.sumsub.com/api-reference/#app-tokens
-define("SUMSUB_SECRET_KEY", "YOUR_SUMSUB_SECRET_KEY"); // Example: Hej2ch71kG2kTd1iIUDZFNsO5C1lh5Gq
-define("SUMSUB_APP_TOKEN", "YOUR_SUMSUB_APP_TOKEN"); // Example: tst:uY0CgwELmgUAEyl4hNWxLngb.0WSeQeiYny4WEqmAALEAiK2qTC96fBad
-define("SUMSUB_TEST_BASE_URL", "https://test-api.sumsub.com"); // Please don't forget to change when switching to production
+define("SUMSUB_SECRET_KEY", "SUMSUB_SECRET_KEY"); // Example: Hej2ch71kG2kTd1iIUDZFNsO5C1lh5Gq
+define("SUMSUB_APP_TOKEN", "SUMSUB_APP_TOKEN"); // Example: tst:uY0CgwELmgUAEyl4hNWxLngb.0WSeQeiYny4WEqmAALEAiK2qTC96fBad
+define("SUMSUB_TEST_BASE_URL", "https://api.sumsub.com"); // Please don't forget to change when switching to production
 
-class AppTokenPhpExample
+class AppTokenGuzzlePhpExample
 {
     public function createApplicant()
         // https://developers.sumsub.com/api-reference/#creating-an-applicant
@@ -102,6 +102,15 @@ class AppTokenPhpExample
         return $this->sendHttpRequest($request, $url)->getBody();
     }
 
+    public function getAccessToken($applicantId)
+        // https://developers.sumsub.com/api-reference/#access-tokens-for-sdks
+    {
+        $url = "/resources/accessTokens?userId=" . $applicantId;
+        $request = new GuzzleHttp\Psr7\Request('POST', SUMSUB_TEST_BASE_URL . $url);
+
+        return $this->sendHttpRequest($request, $url)->getBody();
+    }
+
 }
 
 // The description of the flow can be found here: https://developers.sumsub.com/api-flow/#api-integration-phases
@@ -110,8 +119,9 @@ class AppTokenPhpExample
 // 1) Creating an applicant
 // 2) Adding a document to the applicant
 // 3) Getting applicant status
+// 4) Getting access token
 
-$testObject = new AppTokenPhpExample();
+$testObject = new AppTokenGuzzlePhpExample();
 
 $applicantId = $testObject->createApplicant();
 echo "The applicant was successfully created: " . $applicantId . PHP_EOL;
@@ -119,5 +129,8 @@ echo "The applicant was successfully created: " . $applicantId . PHP_EOL;
 $imageId = $testObject->addDocument($applicantId);
 echo "Identifier of the added document: " . $imageId . PHP_EOL;
 
-$strRes = $testObject->getApplicantStatus($applicantId);
-echo "Applicant status (json string): " . $strRes;
+$applicantStatusStr = $testObject->getApplicantStatus($applicantId);
+echo "Applicant status (json string): " . $applicantStatusStr;
+
+$accessTokenStr = $testObject->getAccessToken($applicantId);
+echo "Access token (json string): " . $accessTokenStr;
