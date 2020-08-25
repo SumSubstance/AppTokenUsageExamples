@@ -7,4 +7,4 @@ This repository contains all of the main Sum&Substance API methods.
 Please share your feedback and suggestions using Telegram chat, Skype or email. 
 
 
-Thanks to [NumberjuiceTeam](https://github.com/NumberjuiceTeam/SumSub-AppTokenCSharpExample) for great C# example.
+Thanks to [NumberjuiceTeam](https://github.com/NumberjuiceTeam/SumSub-AppTokenCSharpExample) for a great C# example.
