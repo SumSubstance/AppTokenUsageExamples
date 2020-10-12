@@ -17,15 +17,11 @@ imageId = 0
 def createApplicant():
 # https://developers.sumsub.com/api-reference/#creating-an-applicant
     global applicantId
-    body = {"externalUserId": 'SomeUserID',
-            "requiredIdDocs": {"docSets": [
-                {"idDocSetType": 'IDENTITY',
-                 "types": ['PASSPORT', 'ID_CARD', 'DRIVERS', 'RESIDENCE_PERMIT']
-                 }]}}
+    body = {"externalUserId": 'SomeUserID'}
     headers = {'Content-Type': 'application/json',
                'Content-Encoding': 'utf-8'
                }
-    resp = sign_request(requests.Request('POST', CONST.SUMSUB_TEST_BASE_URL+'/resources/applicants',
+    resp = sign_request(requests.Request('POST', CONST.SUMSUB_TEST_BASE_URL+'/resources/applicants?levelName=basic-kyc-level',
                                          data = json.dumps(body),
                                          headers=headers
                                          ))
