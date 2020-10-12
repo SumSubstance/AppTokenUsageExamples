@@ -28,26 +28,11 @@ func main() {
     "phone": "+449112081223",
     "dob": "2000-03-04",
     "placeOfBirth": "SomeCityName"
-	},
-	"requiredIdDocs": {
-		"docSets": [{
-				"idDocSetType": "IDENTITY",
-				"types": ["PASSPORT","ID_CARD","DRIVERS","RESIDENCE_PERMIT"]
-			},
-			{
-				"idDocSetType": "SELFIE",
-				"types": ["SELFIE"]
-			},
-			{
-				"idDocSetType": "PROOF_OF_RESIDENCE",
-				"types": ["UTILITY_BILL"]
-			}
-		]
 	}
 }`
 
 	b, err := makeSumsubRequest(
-		"/resources/applicants",
+		"/resources/applicants?levelName=basic-kyc-level",
 		"POST",
 		"application/json",
 		[]byte(postBody))
