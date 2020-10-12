@@ -17,7 +17,7 @@ class Sumsub
 
     # https://developers.sumsub.com/api-reference/#creating-an-applicant
     def applicantRequest(used_id, email, firstName, lastName)
-      resources = 'applicants'
+      resources = 'applicants?levelName=basic-kyc-level'
       body = {
           "externalUserId":"#{used_id}",
           "info":{
@@ -25,19 +25,7 @@ class Sumsub
               "firstName":"#{firstName}",
               "lastName":"#{lastName}"
           },
-          "lang":"it",
-          "requiredIdDocs": {
-              "docSets":[
-                  {
-                      "idDocSetType":"IDENTITY",
-                      "types":[
-                          "PASSPORT",
-                          "ID_CARD",
-                          "DRIVERS",
-                          "RESIDENCE_PERMIT"]
-                  }
-              ]
-          }
+          "lang":"it"
       }.to_json
       header = signed_header(resources, body)
 
