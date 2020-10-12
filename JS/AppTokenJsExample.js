@@ -43,27 +43,11 @@ function createApplicant(externalUserId) {
   console.log("Creating an applicant...");
 
   var method = 'post';
-  var url = '/resources/applicants';
+  var url = '/resources/applicants?levelName=basic-kyc-level';
   var ts = Math.floor(Date.now() / 1000);
   
-  // Setup requierd documents set
-  var requiredIdDocs = {
-      docSets: 
-      [
-          {
-              idDocSetType: 'IDENTITY',
-              types: ['PASSPORT','ID_CARD','DRIVERS','RESIDENCE_PERMIT']
-          },
-          {
-              idDocSetType: 'SELFIE',
-              types: ['SELFIE']
-          }
-      ]
-  };
-
   var body = {
-      externalUserId: externalUserId,
-      requiredIdDocs: requiredIdDocs
+      externalUserId: externalUserId
   };
 
   var headers = {
