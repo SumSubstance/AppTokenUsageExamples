@@ -53,15 +53,7 @@ namespace AppTokenCSharpExample
 
             var body = new
             {
-                externalUserId = $"USER_{DateTimeOffset.UtcNow.ToUnixTimeSeconds()}",
-                requiredIdDocs = new
-                {
-                    docSets = new[]
-                    {
-                        new {idDocSetType = "IDENTITY", types = new[] {"PASSPORT", "ID_CARD", "DRIVERS"}},
-                        new {idDocSetType = "SELFIE", types = new[] {"SELFIE"}}
-                    }
-                }
+                externalUserId = $"USER_{DateTimeOffset.UtcNow.ToUnixTimeSeconds()}"
             };
 
             // Create the request body
@@ -71,7 +63,7 @@ namespace AppTokenCSharpExample
             };
 
             // Get the response
-            var response = await SendPost("/resources/applicants", requestBody);
+            var response = await SendPost("/resources/applicants?levelName=basic-kyc-level", requestBody);
             var applicant = JsonConvert.DeserializeObject<Applicant>(ContentToString(response.Content));
 
             Console.WriteLine(response.IsSuccessStatusCode
