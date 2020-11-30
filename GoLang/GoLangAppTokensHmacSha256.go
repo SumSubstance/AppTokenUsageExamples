@@ -78,7 +78,7 @@ func makeSumsubRequest(path, method, contentType string, body []byte) ([]byte, e
 		return nil, err
 	}
 
-	ts := fmt.Sprintf("%d", time.Now().Add(1*time.Minute).Unix())
+	ts := fmt.Sprintf("%d", time.Now().Unix())
 
 	token := "tst:3FW3pkDK8zF86y7dPJwLhwB9.GyY8I5XL2Pkg2SKXjiMwWOWiVEtS6f0T"
 
