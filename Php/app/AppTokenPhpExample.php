@@ -14,11 +14,11 @@ define("SUMSUB_TEST_BASE_URL", "https://test-api.sumsub.com"); // Please don't f
 
 class AppTokenGuzzlePhpExample
 {
-    public function createApplicant()
+    public function createApplicant($externalUserId)
         // https://developers.sumsub.com/api-reference/#creating-an-applicant
     {
         $requestBody = [
-            'externalUserId' => uniqid()
+            'externalUserId' => $externalUserId
             ];
 
         $url = '/resources/applicants?levelName=basic-kyc-level';
@@ -110,9 +110,11 @@ class AppTokenGuzzlePhpExample
 // 3) Getting applicant status
 // 4) Getting access token
 
+$externalUserId = uniqid();
+
 $testObject = new AppTokenGuzzlePhpExample();
 
-$applicantId = $testObject->createApplicant();
+$applicantId = $testObject->createApplicant($externalUserId);
 echo "The applicant was successfully created: " . $applicantId . PHP_EOL;
 
 $imageId = $testObject->addDocument($applicantId);
