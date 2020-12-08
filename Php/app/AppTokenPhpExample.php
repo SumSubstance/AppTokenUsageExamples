@@ -121,5 +121,5 @@ echo "Identifier of the added document: " . $imageId . PHP_EOL;
 $applicantStatusStr = $testObject->getApplicantStatus($applicantId);
 echo "Applicant status (json string): " . $applicantStatusStr;
 
-$accessTokenStr = $testObject->getAccessToken($applicantId);
+$accessTokenStr = $testObject->getAccessToken($externalUserId);
 echo "Access token (json string): " . $accessTokenStr;
