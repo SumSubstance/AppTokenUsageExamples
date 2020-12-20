@@ -88,7 +88,8 @@ class AppTokenGuzzlePhpExample
         $url = "/resources/applicants/" . $applicantId . "/requiredIdDocsStatus";
         $request = new GuzzleHttp\Psr7\Request('GET', SUMSUB_TEST_BASE_URL . $url);
 
-        return $this->sendHttpRequest($request, $url)->getBody();
+        return $this->sendHttpRequest($request, $url);
+        return json_decode($response->getBody());
     }
 
     public function getAccessToken($externalUserId)
