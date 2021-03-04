@@ -67,7 +67,7 @@ def getApplicantStatus():
 def getAccessToken():
 # https://developers.sumsub.com/api-reference/#access-tokens-for-sdks
     global applicantId
-    params = {"userId": applicantId, "ttlInSecs": '600'}
+    params = {"userId": "SomeUserID", "ttlInSecs": '600'}
     headers = {'Content-Type': 'application/json',
                'Content-Encoding': 'utf-8'
                }
