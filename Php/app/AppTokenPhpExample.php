@@ -33,7 +33,7 @@ class AppTokenGuzzlePhpExample
     public function sendHttpRequest($request, $url)
     {
         $client = new GuzzleHttp\Client();
-        $ts = round(strtotime("now"));
+        $ts = time();
 
         $request = $request->withHeader('X-App-Token', SUMSUB_APP_TOKEN);
         $request = $request->withHeader('X-App-Access-Sig', $this->createSignature($ts, $request->getMethod(), $url, $request->getBody()));
