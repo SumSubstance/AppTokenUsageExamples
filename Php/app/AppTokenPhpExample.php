@@ -38,6 +38,9 @@ class AppTokenGuzzlePhpExample
         $request = $request->withHeader('X-App-Token', SUMSUB_APP_TOKEN);
         $request = $request->withHeader('X-App-Access-Sig', $this->createSignature($ts, $request->getMethod(), $url, $request->getBody()));
         $request = $request->withHeader('X-App-Access-Ts', $ts);
+        
+        // Reset stream offset to read body in `send` method from the start
+        $request->getBody()->rewind();
 
         try {
             $response = $client->send($request);
