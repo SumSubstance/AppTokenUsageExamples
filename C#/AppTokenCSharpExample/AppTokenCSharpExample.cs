@@ -29,6 +29,7 @@ namespace AppTokenCSharpExample
 
             // Create an applicant
             string applicantId = CreateApplicant().Result.id;
+            string externalUserId = CreateApplicant().Result.externalUserId;
 
             // Add a document to the applicant
             var addDocumentResult = AddDocument(applicantId).Result;
@@ -39,7 +40,7 @@ namespace AppTokenCSharpExample
             Console.WriteLine("Applicant status (json string): " + ContentToString(getApplicantResult.Content));
 
             // Get access token
-            var accessTokenResult = GetAccessToken(applicantId).Result;
+            var accessTokenResult = GetAccessToken(externalUserId).Result;
             Console.WriteLine("Access token Result: " + ContentToString(accessTokenResult.Content));
 
             // Important: please keep this line as async tasks that end unexpectedly will close console window before showing the error.
