@@ -61,23 +61,13 @@ public class AppTokenJavaExample {
     public static String createApplicant() throws IOException, NoSuchAlgorithmException, InvalidKeyException {
         // https://developers.sumsub.com/api-reference/#creating-an-applicant
 
-        DocSet identityDocSet = new DocSet(
-                IdDocSetType.IDENTITY,
-                Arrays.asList(DocType.PASSPORT, DocType.ID_CARD, DocType.DRIVERS)
-        );
-
-        DocSet selfieDocSet = new DocSet(
-                IdDocSetType.SELFIE,
-                Collections.singletonList(DocType.SELFIE)
-        );
-
         Applicant applicant = new Applicant(
                 UUID.randomUUID().toString(),
                 new RequiredIdDocs(Arrays.asList(identityDocSet, selfieDocSet))
         );
 
         Response response = sendPost(
-                "/resources/applicants",
+                "/resources/applicants?levelName=basic-kyc-level",
                 RequestBody.create(
                         objectMapper.writeValueAsString(applicant),
                         MediaType.parse("application/json; charset=utf-8")));
