@@ -14,9 +14,8 @@ public class Applicant {
     public Applicant() {
     }
 
-    public Applicant(String externalUserId, RequiredIdDocs requiredIdDocs) {
+    public Applicant(String externalUserId) {
         this.externalUserId = externalUserId;
-        this.requiredIdDocs = requiredIdDocs;
     }
 
     public String getId() {
