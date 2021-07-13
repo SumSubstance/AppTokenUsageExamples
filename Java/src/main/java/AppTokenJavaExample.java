@@ -45,8 +45,10 @@ public class AppTokenJavaExample {
         // 3) Getting applicant status
         // 4) Getting access token
 
+        String externalUserId = UUID.randomUUID().toString();
+        
         String applicantId = createApplicant();
-        System.out.println("The applicant was successfully created: " + applicantId);
+        System.out.println("The applicant (" + externalUserId + ") was successfully created: " + applicantId);
 
         String imageId = addDocument(applicantId, new File(AppTokenJavaExample.class.getResource("/images/sumsub-logo.png").getFile()));
         System.out.println("Identifier of the added document: " + imageId);
@@ -61,10 +63,7 @@ public class AppTokenJavaExample {
     public static String createApplicant() throws IOException, NoSuchAlgorithmException, InvalidKeyException {
         // https://developers.sumsub.com/api-reference/#creating-an-applicant
 
-        Applicant applicant = new Applicant(
-                UUID.randomUUID().toString(),
-                new RequiredIdDocs(Arrays.asList(identityDocSet, selfieDocSet))
-        );
+        Applicant applicant = new Applicant(externalUserId);
 
         Response response = sendPost(
                 "/resources/applicants?levelName=basic-kyc-level",
@@ -102,7 +101,7 @@ public class AppTokenJavaExample {
     public static String getAccessToken(String applicantId) throws NoSuchAlgorithmException, InvalidKeyException, IOException {
         // https://developers.sumsub.com/api-reference/#access-tokens-for-sdks
 
-        Response response = sendPost("/resources/accessTokens?userId=" + applicantId, RequestBody.create(new byte[0], null));
+        Response response = sendPost("/resources/accessTokens?userId=" + externalUserId, RequestBody.create(new byte[0], null));
 
         ResponseBody responseBody = response.body();
         return responseBody != null ? responseBody.string() : null;
