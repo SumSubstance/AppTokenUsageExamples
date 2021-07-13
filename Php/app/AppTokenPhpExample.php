@@ -7,6 +7,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 use GuzzleHttp;
 use GuzzleHttp\Psr7\MultipartStream;
 
+//Guzzle version 7.3.0 or higher
 // The description of the authorization method is available here: https://developers.sumsub.com/api-reference/#app-tokens
 define("SUMSUB_SECRET_KEY", "SUMSUB_SECRET_KEY"); // Example: Hej2ch71kG2kTd1iIUDZFNsO5C1lh5Gq
 define("SUMSUB_APP_TOKEN", "SUMSUB_APP_TOKEN"); // Example: tst:uY0CgwELmgUAEyl4hNWxLngb.0WSeQeiYny4WEqmAALEAiK2qTC96fBad
