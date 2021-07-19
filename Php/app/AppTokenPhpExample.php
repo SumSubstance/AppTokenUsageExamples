@@ -7,7 +7,6 @@ require_once __DIR__ . '/../vendor/autoload.php';
 use GuzzleHttp;
 use GuzzleHttp\Psr7\MultipartStream;
 
-//Guzzle version 7.3.0 or higher
 // The description of the authorization method is available here: https://developers.sumsub.com/api-reference/#app-tokens
 define("SUMSUB_SECRET_KEY", "SUMSUB_SECRET_KEY"); // Example: Hej2ch71kG2kTd1iIUDZFNsO5C1lh5Gq
 define("SUMSUB_APP_TOKEN", "SUMSUB_APP_TOKEN"); // Example: tst:uY0CgwELmgUAEyl4hNWxLngb.0WSeQeiYny4WEqmAALEAiK2qTC96fBad
@@ -92,8 +91,8 @@ class AppTokenGuzzlePhpExample
         $url = "/resources/applicants/" . $applicantId . "/requiredIdDocsStatus";
         $request = new GuzzleHttp\Psr7\Request('GET', SUMSUB_TEST_BASE_URL . $url);
 
-        return $this->sendHttpRequest($request, $url);
-        return json_decode($response->getBody());
+        return $responseBody = $this->sendHttpRequest($request, $url)->getBody();
+        return json_decode($responseBody);
     }
 
     public function getAccessToken($externalUserId)
@@ -130,3 +129,5 @@ echo "Applicant status (json string): " . $applicantStatusStr;
 
 $accessTokenStr = $testObject->getAccessToken($externalUserId);
 echo "Access token (json string): " . $accessTokenStr;
+
+?>
