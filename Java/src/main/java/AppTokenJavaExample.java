@@ -46,7 +46,7 @@ public class AppTokenJavaExample {
         // 4) Getting access token
 
         String externalUserId = UUID.randomUUID().toString();
-        
+
         String applicantId = createApplicant(externalUserId);
         System.out.println("The applicant (" + externalUserId + ") was successfully created: " + applicantId);
 
@@ -56,7 +56,7 @@ public class AppTokenJavaExample {
         String applicantStatusStr = getApplicantStatus(applicantId);
         System.out.println("Applicant status (json string): " + applicantStatusStr);
 
-        String accessTokenStr = getAccessToken(applicantId, externalUserId);
+        String accessTokenStr = getAccessToken(externalUserId);
         System.out.println("Access token (json string): " + accessTokenStr);
     }
 
@@ -98,7 +98,7 @@ public class AppTokenJavaExample {
         return responseBody != null ? responseBody.string() : null;
     }
 
-    public static String getAccessToken(String applicantId, String externalUserId) throws NoSuchAlgorithmException, InvalidKeyException, IOException {
+    public static String getAccessToken(String externalUserId) throws NoSuchAlgorithmException, InvalidKeyException, IOException {
         // https://developers.sumsub.com/api-reference/#access-tokens-for-sdks
 
         Response response = sendPost("/resources/accessTokens?userId=" + externalUserId, RequestBody.create(new byte[0], null));
@@ -164,6 +164,3 @@ public class AppTokenJavaExample {
     }
 
 }
-
-
-
