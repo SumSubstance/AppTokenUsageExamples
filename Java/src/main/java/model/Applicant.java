@@ -9,7 +9,6 @@ public class Applicant {
     // https://developers.sumsub.com/api-reference/#request-body
     private String id;
     private String externalUserId;
-    private RequiredIdDocs requiredIdDocs;
 
     public Applicant() {
     }
@@ -32,13 +31,5 @@ public class Applicant {
 
     public void setExternalUserId(String externalUserId) {
         this.externalUserId = externalUserId;
-    }
-
-    public RequiredIdDocs getRequiredIdDocs() {
-        return requiredIdDocs;
-    }
-
-    public void setRequiredIdDocs(RequiredIdDocs requiredIdDocs) {
-        this.requiredIdDocs = requiredIdDocs;
     }
 }
