@@ -4,7 +4,7 @@ const fs = require('fs');
 const FormData = require('form-data');
 
 // These parameters should be used for all requests
-const SUMSUB_APP_TOKEN = 'YOUR_SUMSUB_APP_TOKEN'; // Example: tst:uY0CgwELmgUAEyl4hNWxLngb.0WSeQeiYny4WEqmAALEAiK2qTC96fBad
+const SUMSUB_APP_TOKEN = 'YOUR_SUMSUB_SECRET_KEY'; // Example: tst:uY0CgwELmgUAEyl4hNWxLngb.0WSeQeiYny4WEqmAALEAiK2qTC96fBad
 const SUMSUB_SECRET_KEY = 'YOUR_SUMSUB_SECRET_KEY'; // Example: Hej2ch71kG2kTd1iIUDZFNsO5C1lh5Gq
 const SUMSUB_BASE_URL = 'https://test-api.sumsub.com'; // Please don't forget to change when switching to production
 
@@ -39,11 +39,11 @@ function createSignature(config) {
 // These functions configure requests for specified method
 
 // https://developers.sumsub.com/api-reference/#creating-an-applicant
-function createApplicant(externalUserId) {
+function createApplicant(externalUserId, levelName) {
   console.log("Creating an applicant...");
 
   var method = 'post';
-  var url = '/resources/applicants?levelName=basic-kyc-level';
+  var url = '/resources/applicants?levelName=' + levelName;
   var ts = Math.floor(Date.now() / 1000);
   
   var body = {
@@ -116,11 +116,11 @@ function getApplicantStatus(applicantId) {
 }
 
 // https://developers.sumsub.com/api-reference/#access-tokens-for-sdks
-function createAccessToken (externalUserId, ttlInSecs = 600) {
+function createAccessToken (externalUserId, levelName = 'basic-kyc-level', ttlInSecs = 600) {
   console.log("Creating an access token for initializng SDK...");
 
   var method = 'post';
-  var url = `/resources/accessTokens?userId=${externalUserId}&ttlInSecs=${ttlInSecs}`;
+  var url = `/resources/accessTokens?userId=${externalUserId}&ttlInSecs=${ttlInSecs}&levelName=${levelName}`;
 
   var headers = {
       'Accept': 'application/json',
@@ -147,9 +147,10 @@ function createAccessToken (externalUserId, ttlInSecs = 600) {
 
 async function main() {
   externalUserId = "random-JSToken-" + Math.random().toString(36).substr(2, 9);
+  levelName = 'basic-kyc-level';
   console.log("External UserID: ", externalUserId); 
 
-  response = await axios(createApplicant(externalUserId))
+  response = await axios(createApplicant(externalUserId, levelName))
     .then(function (response) {
       console.log("Response:\n", response.data);
       return response;
@@ -179,7 +180,7 @@ async function main() {
     console.log("Error:\n", error.response.data);
   });
 
-  response = await axios(createAccessToken(externalUserId, 1200))
+  response = await axios(createAccessToken(externalUserId, levelName, 1200))
   .then(function (response) {
     console.log("Response:\n", response.data);
     return response;
