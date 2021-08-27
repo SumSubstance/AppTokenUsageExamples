@@ -8,8 +8,8 @@ import json
 
 
 class Const:
-    SUMSUB_SECRET_KEY = "YmrsTgnkNbvTeLMOIBc1hQbfAapo6Fv4"  # Example: Hej2ch71kG2kTd1iIUDZFNsO5C1lh5Gq
-    SUMSUB_APP_TOKEN = "tst:UDEHoLqnq5Oj5RswnrFtcw4f.YDGv8sg8cKKInOVM1wgXyloOSYjs5F2A"  # Example: tst:uY0CgwELmgUAEyl4hNWxLngb.0WSeQeiYny4WEqmAALEAiK2qTC96fBad
+    SUMSUB_SECRET_KEY = "YOUR_SUMSUB_SECRET_KEY"  # Example: Hej2ch71kG2kTd1iIUDZFNsO5C1lh5Gq
+    SUMSUB_APP_TOKEN = "YOUR_SUMSUB_APP_TOKEN"  # Example: tst:uY0CgwELmgUAEyl4hNWxLngb.0WSeQeiYny4WEqmAALEAiK2qTC96fBad
     SUMSUB_TEST_BASE_URL = "https://test-api.sumsub.com"  # Please don't forget to change when switching to production
 
 
