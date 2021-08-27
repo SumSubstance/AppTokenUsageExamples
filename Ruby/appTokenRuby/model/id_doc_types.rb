@@ -1,0 +1,8 @@
+module IdDocType
+  PASSPORT = 'PASSPORT'.freeze
+  ID_CARD = 'ID_CARD'.freeze
+  DRIVING_LICENSE = 'DRIVERS'.freeze
+  RESIDENCE_PERMIT = 'RESIDENCE_PERMIT'.freeze
+  SELFIE = 'SELFIE'.freeze
+  UTILITY_BILL = 'UTILITY_BILL'.freeze
+end
