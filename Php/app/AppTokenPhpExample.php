@@ -98,7 +98,7 @@ class AppTokenGuzzlePhpExample
     public function getAccessToken($externalUserId, $levelName)
         // https://developers.sumsub.com/api-reference/#access-tokens-for-sdks
     {
-        $url = "/resources/accessTokens?userId=" . $externalUserId . "levelName=" . $levelName;
+        $url = "/resources/accessTokens?userId=" . $externalUserId . "&levelName=" . $levelName;
         $request = new GuzzleHttp\Psr7\Request('POST', SUMSUB_TEST_BASE_URL . $url);
 
         return $this->sendHttpRequest($request, $url)->getBody();
