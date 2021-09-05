@@ -28,8 +28,9 @@ namespace AppTokenCSharpExample
             // 4) Getting access token
 
             // Create an applicant
-            string applicantId = CreateApplicant().Result.id;
-            string externalUserId = CreateApplicant().Result.externalUserId;
+            string externalUserId = $"USER_{DateTimeOffset.UtcNow.ToUnixTimeSeconds()}";
+            string levelName = "basic-kyc-level";
+            string applicantId = CreateApplicant(externalUserId, levelName).Result.id;
 
             // Add a document to the applicant
             var addDocumentResult = AddDocument(applicantId).Result;
@@ -40,7 +41,7 @@ namespace AppTokenCSharpExample
             Console.WriteLine("Applicant status (json string): " + ContentToString(getApplicantResult.Content));
 
             // Get access token
-            var accessTokenResult = GetAccessToken(externalUserId).Result;
+            var accessTokenResult = GetAccessToken(externalUserId, levelName).Result;
             Console.WriteLine("Access token Result: " + ContentToString(accessTokenResult.Content));
 
             // Important: please keep this line as async tasks that end unexpectedly will close console window before showing the error.
@@ -48,13 +49,13 @@ namespace AppTokenCSharpExample
         }
 
         // https://developers.sumsub.com/api-reference/#getting-applicant-status-sdk
-        public static async Task<Applicant> CreateApplicant()
+        public static async Task<Applicant> CreateApplicant(string externalUserId, string levelName)
         {
             Console.WriteLine("Creating an applicant...");
 
             var body = new
             {
-                externalUserId = $"USER_{DateTimeOffset.UtcNow.ToUnixTimeSeconds()}"
+                externalUserId = externalUserId
             };
 
             // Create the request body
@@ -64,7 +65,7 @@ namespace AppTokenCSharpExample
             };
 
             // Get the response
-            var response = await SendPost("/resources/applicants?levelName=basic-kyc-level", requestBody);
+            var response = await SendPost($"/resources/applicants?levelName={levelName}", requestBody);
             var applicant = JsonConvert.DeserializeObject<Applicant>(ContentToString(response.Content));
 
             Console.WriteLine(response.IsSuccessStatusCode
@@ -120,9 +121,9 @@ namespace AppTokenCSharpExample
             return response;
         }
 
-        public static async Task<HttpResponseMessage> GetAccessToken(string applicantId)
+        public static async Task<HttpResponseMessage> GetAccessToken(string applicantId, string levelName)
         {
-            var response = await SendPost($"/resources/accessTokens?userId={applicantId}", new HttpRequestMessage());
+            var response = await SendPost($"/resources/accessTokens?userId={applicantId}&levelName={levelName}", new HttpRequestMessage());
             return response;
         }
 
