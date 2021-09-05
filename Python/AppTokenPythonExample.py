@@ -1,51 +1,43 @@
+import hashlib
+import hmac
+import json
+import logging
 import time
 import uuid
 
 import requests
-import hmac
-import hashlib
-import json
 
-
-class Const:
-    SUMSUB_SECRET_KEY = "YOUR_SUMSUB_SECRET_KEY"  # Example: Hej2ch71kG2kTd1iIUDZFNsO5C1lh5Gq
-    SUMSUB_APP_TOKEN = "YOUR_SUMSUB_APP_TOKEN"  # Example: tst:uY0CgwELmgUAEyl4hNWxLngb.0WSeQeiYny4WEqmAALEAiK2qTC96fBad
-    SUMSUB_TEST_BASE_URL = "https://test-api.sumsub.com"  # Please don't forget to change when switching to production
-
-
-CONST = Const()
-applicantId = 0
-imageId = 0
+SUMSUB_SECRET_KEY = "YOUR_SUMSUB_SECRET_KEY"  # Example: Hej2ch71kG2kTd1iIUDZFNsO5C1lh5Gq
+SUMSUB_APP_TOKEN = "YOUR_SUMSUB_APP_TOKEN"  # Example: tst:uY0CgwELmgUAEyl4hNWxLngb.0WSeQeiYny4WEqmAALEAiK2qTC96fBad
+SUMSUB_TEST_BASE_URL = "https://test-api.sumsub.com"  # Please don't forget to change when switching to production
 
 
 def create_applicant(external_user_id, level_name):
     # https://developers.sumsub.com/api-reference/#creating-an-applicant
-    global applicantId
     body = {'externalUserId': external_user_id}
     params = {'levelName': level_name}
     headers = {
-                'Content-Type': 'application/json',
-                'Content-Encoding': 'utf-8'
-                }
+        'Content-Type': 'application/json',
+        'Content-Encoding': 'utf-8'
+    }
     resp = sign_request(
-        requests.Request('POST', CONST.SUMSUB_TEST_BASE_URL + '/resources/applicants?levelName=' + level_name,
+        requests.Request('POST', SUMSUB_TEST_BASE_URL + '/resources/applicants?levelName=' + level_name,
                          params=params,
                          data=json.dumps(body),
-                         headers=headers
-                         ))
+                         headers=headers))
     s = requests.Session()
-    ourresponse = s.send(resp)
-    applicantId = (ourresponse.json()['id'])
-    print('The applicant was successfully created:', applicantId)
+    response = s.send(resp)
+    applicant_id = (response.json()['id'])
+    return applicant_id
 
 
-def add_document():
+def add_document(applicant_id):
     # https://developers.sumsub.com/api-reference/#adding-an-id-document
     global imageId, applicantId
     with open('img.jpg', 'wb') as handle:
         response = requests.get('https://fv2-1.failiem.lv/thumb_show.php?i=gdmn9sqy&view', stream=True)
         if not response.ok:
-            print(response)
+            logging.error(response)
 
         for block in response.iter_content(1024):
             if not block:
@@ -53,24 +45,22 @@ def add_document():
             handle.write(block)
     payload = {"metadata": '{"idDocType":"PASSPORT", "country":"USA"}'}
     resp = sign_request(
-        requests.Request('POST', CONST.SUMSUB_TEST_BASE_URL + '/resources/applicants/' + applicantId + '/info/idDoc',
+        requests.Request('POST', SUMSUB_TEST_BASE_URL + '/resources/applicants/' + applicant_id + '/info/idDoc',
                          data=payload,
                          files=[('content', open('img.jpg', 'rb'))]
                          ))
     sw = requests.Session()
-    ourresponse = sw.send(resp)
-    imageId = (ourresponse.headers['X-Image-Id'])
-    print('Identifier of the added document:', imageId)
+    response = sw.send(resp)
+    return response.headers['X-Image-Id']
 
 
-def get_applicant_status():
+def get_applicant_status(applicant_id):
     # https://developers.sumsub.com/api-reference/#getting-applicant-status-api
-    global applicantId
-    url = CONST.SUMSUB_TEST_BASE_URL + '/resources/applicants/' + applicantId + '/requiredIdDocsStatus'
+    url = SUMSUB_TEST_BASE_URL + '/resources/applicants/' + applicant_id + '/requiredIdDocsStatus'
     resp = sign_request(requests.Request('GET', url))
     s = requests.Session()
-    ourresponse = s.send(resp)
-    print(ourresponse.text)
+    response = s.send(resp)
+    return response
 
 
 def get_access_token(external_user_id, level_name):
@@ -80,15 +70,14 @@ def get_access_token(external_user_id, level_name):
     headers = {'Content-Type': 'application/json',
                'Content-Encoding': 'utf-8'
                }
-    resp = sign_request(requests.Request('POST', CONST.SUMSUB_TEST_BASE_URL + '/resources/accessTokens',
+    resp = sign_request(requests.Request('POST', SUMSUB_TEST_BASE_URL + '/resources/accessTokens',
                                          params=params,
-                                         headers=headers
-                                         ))
+                                         headers=headers))
     s = requests.Session()
-    our_response = s.send(resp)
-    print(our_response.text)
-    token = (our_response.json()['token'])
-    print('Token:', token)
+    response = s.send(resp)
+    token = (response.json()['token'])
+
+    return token
 
 
 def sign_request(request: requests.Request) -> requests.PreparedRequest:
@@ -103,11 +92,11 @@ def sign_request(request: requests.Request) -> requests.PreparedRequest:
     data_to_sign = str(now).encode('utf-8') + method.encode('utf-8') + path_url.encode('utf-8') + body
     # hmac needs bytes
     signature = hmac.new(
-        CONST.SUMSUB_SECRET_KEY.encode('utf-8'),
+        SUMSUB_SECRET_KEY.encode('utf-8'),
         data_to_sign,
         digestmod=hashlib.sha256
     )
-    prepared_request.headers['X-App-Token'] = CONST.SUMSUB_APP_TOKEN
+    prepared_request.headers['X-App-Token'] = SUMSUB_APP_TOKEN
     prepared_request.headers['X-App-Access-Ts'] = str(now)
     prepared_request.headers['X-App-Access-Sig'] = signature.hexdigest()
     return prepared_request
@@ -118,10 +107,18 @@ def sign_request(request: requests.Request) -> requests.PreparedRequest:
 # 2) Adding a document to the applicant
 # 3) Getting applicant status
 # 4) Getting access token
-external_user_id = str(uuid.uuid4())
-level_name = 'basic-kyc-level'
+def main():
+    external_user_id = str(uuid.uuid4())
+    level_name = 'basic-kyc-level'
+    applicant_id = create_applicant(external_user_id, level_name)
+    logging.info(applicant_id)
+    image_id = add_document(applicant_id)
+    logging.info(image_id)
+    status = get_applicant_status(applicant_id)
+    logging.info(status)
+    token = get_access_token(external_user_id, level_name)
+    logging.info(token)
 
-create_applicant(external_user_id, level_name)
-add_document()
-get_applicant_status()
-get_access_token(external_user_id, level_name)
+
+if __name__ == '__main__':
+    exit(main())
