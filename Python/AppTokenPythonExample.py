@@ -33,7 +33,6 @@ def create_applicant(external_user_id, level_name):
 
 def add_document(applicant_id):
     # https://developers.sumsub.com/api-reference/#adding-an-id-document
-    global imageId, applicantId
     with open('img.jpg', 'wb') as handle:
         response = requests.get('https://fv2-1.failiem.lv/thumb_show.php?i=gdmn9sqy&view', stream=True)
         if not response.ok:
@@ -65,7 +64,6 @@ def get_applicant_status(applicant_id):
 
 def get_access_token(external_user_id, level_name):
     # https://developers.sumsub.com/api-reference/#access-tokens-for-sdks
-    global applicantId
     params = {'userId': external_user_id, 'ttlInSecs': '600', 'levelName': level_name}
     headers = {'Content-Type': 'application/json',
                'Content-Encoding': 'utf-8'
