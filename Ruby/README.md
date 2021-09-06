@@ -20,5 +20,5 @@
   #5 Getting applicant data
   https://developers.sumsub.com/api-reference/#getting-applicant-data
   
-  #6 Initializing WEBSDK
+  #6 Generating an access token
   https://developers.sumsub.com/api-reference/#access-tokens-for-sdks

@@ -14,14 +14,14 @@ define("SUMSUB_TEST_BASE_URL", "https://test-api.sumsub.com"); // Please don't f
 
 class AppTokenGuzzlePhpExample
 {
-    public function createApplicant($externalUserId)
+    public function createApplicant($externalUserId, $levelName)
         // https://developers.sumsub.com/api-reference/#creating-an-applicant
     {
         $requestBody = [
             'externalUserId' => $externalUserId
             ];
 
-        $url = '/resources/applicants?levelName=basic-kyc-level';
+        $url = '/resources/applicants?levelName=' . $levelName;
         $request = new GuzzleHttp\Psr7\Request('POST', SUMSUB_TEST_BASE_URL . $url);
         $request = $request->withHeader('Content-Type', 'application/json');
         $request = $request->withBody(GuzzleHttp\Psr7\stream_for(json_encode($requestBody)));
@@ -95,10 +95,10 @@ class AppTokenGuzzlePhpExample
         return json_decode($responseBody);
     }
 
-    public function getAccessToken($externalUserId)
+    public function getAccessToken($externalUserId, $levelName)
         // https://developers.sumsub.com/api-reference/#access-tokens-for-sdks
     {
-        $url = "/resources/accessTokens?userId=" . $externalUserId;
+        $url = "/resources/accessTokens?userId=" . $externalUserId . "&levelName=" . $levelName;
         $request = new GuzzleHttp\Psr7\Request('POST', SUMSUB_TEST_BASE_URL . $url);
 
         return $this->sendHttpRequest($request, $url)->getBody();
@@ -115,10 +115,11 @@ class AppTokenGuzzlePhpExample
 // 4) Getting access token
 
 $externalUserId = uniqid();
+$levelName = 'basic-kyc-level';
 
 $testObject = new AppTokenGuzzlePhpExample();
 
-$applicantId = $testObject->createApplicant($externalUserId);
+$applicantId = $testObject->createApplicant($externalUserId, $levelName);
 echo "The applicant was successfully created: " . $applicantId . PHP_EOL;
 
 $imageId = $testObject->addDocument($applicantId);
@@ -127,7 +128,7 @@ echo "Identifier of the added document: " . $imageId . PHP_EOL;
 $applicantStatusStr = $testObject->getApplicantStatus($applicantId);
 echo "Applicant status (json string): " . $applicantStatusStr;
 
-$accessTokenStr = $testObject->getAccessToken($externalUserId);
+$accessTokenStr = $testObject->getAccessToken($externalUserId, $levelName);
 echo "Access token (json string): " . $accessTokenStr;
 
 ?>

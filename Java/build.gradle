@@ -10,17 +10,17 @@ repositories {
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
 
     // https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp
-    compile group: 'com.squareup.okhttp3', name: 'okhttp', version: '4.7.2'
+    implementation group: 'com.squareup.okhttp3', name: 'okhttp', version: '4.7.2'
 
     // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
-    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.11.0'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.11.0'
 
     // https://mvnrepository.com/artifact/commons-codec/commons-codec
-    compile group: 'commons-codec', name: 'commons-codec', version: '1.14'
+    implementation group: 'commons-codec', name: 'commons-codec', version: '1.14'
 
     // https://mvnrepository.com/artifact/com.squareup.okio/okio
-    compile group: 'com.squareup.okio', name: 'okio', version: '2.6.0'
+    implementation group: 'com.squareup.okio', name: 'okio', version: '2.6.0'
 }

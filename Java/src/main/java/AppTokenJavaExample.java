@@ -1,11 +1,8 @@
 import com.fasterxml.jackson.databind.ObjectMapper;
 import model.Applicant;
-import model.DocSet;
 import model.DocType;
 import model.HttpMethod;
-import model.IdDocSetType;
 import model.Metadata;
-import model.RequiredIdDocs;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
@@ -24,8 +21,6 @@ import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.time.Instant;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.UUID;
 
 public class AppTokenJavaExample {
@@ -46,8 +41,9 @@ public class AppTokenJavaExample {
         // 4) Getting access token
 
         String externalUserId = UUID.randomUUID().toString();
+        String levelName = "basic-kyc-level";
 
-        String applicantId = createApplicant(externalUserId);
+        String applicantId = createApplicant(externalUserId, levelName);
         System.out.println("The applicant (" + externalUserId + ") was successfully created: " + applicantId);
 
         String imageId = addDocument(applicantId, new File(AppTokenJavaExample.class.getResource("/images/sumsub-logo.png").getFile()));
@@ -56,17 +52,17 @@ public class AppTokenJavaExample {
         String applicantStatusStr = getApplicantStatus(applicantId);
         System.out.println("Applicant status (json string): " + applicantStatusStr);
 
-        String accessTokenStr = getAccessToken(externalUserId);
+        String accessTokenStr = getAccessToken(externalUserId, levelName);
         System.out.println("Access token (json string): " + accessTokenStr);
     }
 
-    public static String createApplicant(String externalUserId) throws IOException, NoSuchAlgorithmException, InvalidKeyException {
+    public static String createApplicant(String externalUserId, String levelName) throws IOException, NoSuchAlgorithmException, InvalidKeyException {
         // https://developers.sumsub.com/api-reference/#creating-an-applicant
 
         Applicant applicant = new Applicant(externalUserId);
 
         Response response = sendPost(
-                "/resources/applicants?levelName=basic-kyc-level",
+                "/resources/applicants?levelName=" + levelName,
                 RequestBody.create(
                         objectMapper.writeValueAsString(applicant),
                         MediaType.parse("application/json; charset=utf-8")));
@@ -98,10 +94,10 @@ public class AppTokenJavaExample {
         return responseBody != null ? responseBody.string() : null;
     }
 
-    public static String getAccessToken(String externalUserId) throws NoSuchAlgorithmException, InvalidKeyException, IOException {
+    public static String getAccessToken(String externalUserId, String levelName) throws NoSuchAlgorithmException, InvalidKeyException, IOException {
         // https://developers.sumsub.com/api-reference/#access-tokens-for-sdks
 
-        Response response = sendPost("/resources/accessTokens?userId=" + externalUserId, RequestBody.create(new byte[0], null));
+        Response response = sendPost("/resources/accessTokens?userId=" + externalUserId + "&levelName=" + levelName, RequestBody.create(new byte[0], null));
 
         ResponseBody responseBody = response.body();
         return responseBody != null ? responseBody.string() : null;
