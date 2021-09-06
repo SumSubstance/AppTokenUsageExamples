@@ -106,6 +106,7 @@ def sign_request(request: requests.Request) -> requests.PreparedRequest:
 # 3) Getting applicant status
 # 4) Getting access token
 def main():
+    logging.basicConfig(level=logging.INFO)
     external_user_id = str(uuid.uuid4())
     level_name = 'basic-kyc-level'
     applicant_id = create_applicant(external_user_id, level_name)
