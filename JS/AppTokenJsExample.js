@@ -124,7 +124,6 @@ function createAccessToken (externalUserId, levelName = 'basic-kyc-level', ttlIn
 
   var headers = {
       'Accept': 'application/json',
-      'Content-Type': 'application/json',
       'X-App-Token': SUMSUB_APP_TOKEN
   };
 
