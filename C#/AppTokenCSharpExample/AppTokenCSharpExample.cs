@@ -13,9 +13,9 @@ namespace AppTokenCSharpExample
     internal class AppTokenCSharpExample
     {
         // The description of the authorization method is available here: https://developers.sumsub.com/api-reference/#app-tokens
-        private static readonly string SUMSUB_SECRET_KEY = "SUMSUB_SECRET_KEY"; // Example: Hej2ch71kG2kTd1iIUDZFNsO5C1lh5Gq
-        private static readonly string SUMSUB_APP_TOKEN = "SUMSUB_APP_TOKEN";  // Example: tst:uY0CgwELmgUAEyl4hNWxLngb.0WSeQeiYny4WEqmAALEAiK2qTC96fBad
-        private static readonly string SUMSUB_TEST_BASE_URL = "https://test-api.sumsub.com";  // Please don't forget to change when switching to production
+        private static readonly string SUMSUB_SECRET_KEY = "SUMSUB_SECRET_KEY"; // Example: Hej2ch71kG2kTd1iIUDZFNsO5C1lh5Gq - Please don't forget to change when switching to production
+        private static readonly string SUMSUB_APP_TOKEN = "SUMSUB_APP_TOKEN";  // Example: tst:uY0CgwELmgUAEyl4hNWxLngb.0WSeQeiYny4WEqmAALEAiK2qTC96fBad - Please don't forget to change when switching to production
+        private static readonly string SUMSUB_TEST_BASE_URL = "https://api.sumsub.com";
 
         private static void Main(string[] args)
         {
