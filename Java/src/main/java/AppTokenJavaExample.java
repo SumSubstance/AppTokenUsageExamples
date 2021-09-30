@@ -27,7 +27,8 @@ public class AppTokenJavaExample {
     // The description of the authorization method is available here: https://developers.sumsub.com/api-reference/#app-tokens
     private static final String SUMSUB_SECRET_KEY = "YOUR_SUMSUB_SECRET_KEY"; // Example: Hej2ch71kG2kTd1iIUDZFNsO5C1lh5Gq
     private static final String SUMSUB_APP_TOKEN = "YOUR_SUMSUB_APP_TOKEN"; // Example: tst:uY0CgwELmgUAEyl4hNWxLngb.0WSeQeiYny4WEqmAALEAiK2qTC96fBad
-    private static final String SUMSUB_TEST_BASE_URL = "https://test-api.sumsub.com"; // Please don't forget to change when switching to production
+    private static final String SUMSUB_TEST_BASE_URL = "https://api.sumsub.com";
+    //Please don't forget to change token and secret key values to production ones when switching to production
 
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
