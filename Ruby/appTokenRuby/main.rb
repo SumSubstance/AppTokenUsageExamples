@@ -10,10 +10,10 @@ require 'securerandom'
 # The description of the authorization method is available here: https://developers.sumsub.com/api-reference/#app-tokens
 APP_TOKEN = 'YOUR_SUMSUB_APP_TOKEN'.freeze # Example: tst:uY0CgwELmgUAEyl4hNWxLngb.0WSeQeiYny4WEqmAALEAiK2qTC96fBad
 SECRET_KEY = 'YOUR_SUMSUB_SECRET_KEY'.freeze # Example: Hej2ch71kG2kTd1iIUDZFNsO5C1lh5Gq
+# Please don't forget to change token and secret key values to production ones when switching to production
 
-# do not forget to replace the environment after release.
 def request_env_url(resource)
-  "https://test-api.sumsub.com/resources/#{resource}"
+  "https://api.sumsub.com/resources/#{resource}"
 end
 
 # https://developers.sumsub.com/api-reference/#creating-an-applicant
