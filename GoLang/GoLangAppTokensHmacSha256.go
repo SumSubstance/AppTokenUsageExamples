@@ -19,7 +19,7 @@ import (
 )
 
 const URL = "https://api.sumsub.com"
-const SumsubAppToken = "tst:6L6rqHEtRVvBKKt7P1A03k2x.h6OsEOXWpyaXAjvBVNnx3ccXNGTBLHkw" // Example: tst:uY0CgwELmgUAEyl4hNWxLngb.0WSeQeiYny4WEqmAALEAiK2qTC96fBad
+const SumsubAppToken = "sbx:6L6rqHEtRVvBKKt7P1A03k2x.h6OsEOXWpyaXAjvBVNnx3ccXNGTBLHkw" // Example: sbx:uY0CgwELmgUAEyl4hNWxLngb.0WSeQeiYny4WEqmAALEAiK2qTC96fBad
 const SumsubSecretKey = "EraepapR4Grr2vI1eZWtTkFDhbhsC5EI"                             // Example: Hej2ch71kG2kTd1iIUDZFNsO5C1lh5Gq
 //Please don't forget to change token and secret key values to production ones when switching to production
 
