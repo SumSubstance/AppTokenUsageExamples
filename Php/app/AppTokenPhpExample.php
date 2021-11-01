@@ -9,7 +9,7 @@ use GuzzleHttp\Psr7\MultipartStream;
 
 // The description of the authorization method is available here: https://developers.sumsub.com/api-reference/#app-tokens
 define("SUMSUB_SECRET_KEY", "SUMSUB_SECRET_KEY"); // Example: Hej2ch71kG2kTd1iIUDZFNsO5C1lh5Gq
-define("SUMSUB_APP_TOKEN", "SUMSUB_APP_TOKEN"); // Example: tst:uY0CgwELmgUAEyl4hNWxLngb.0WSeQeiYny4WEqmAALEAiK2qTC96fBad
+define("SUMSUB_APP_TOKEN", "SUMSUB_APP_TOKEN"); // Example: sbx:uY0CgwELmgUAEyl4hNWxLngb.0WSeQeiYny4WEqmAALEAiK2qTC96fBad
 define("SUMSUB_TEST_BASE_URL", "https://api.sumsub.com");
 //Please don't forget to change token and secret key values to production ones when switching to production
 
