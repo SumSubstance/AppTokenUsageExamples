@@ -1,0 +1,17 @@
+{
+  "requires": true,
+  "lockfileVersion": 1,
+  "name": "app-token",
+  "version": "1.0.0",
+  "main": "AppTokenJsExample.js",
+  "scripts": {
+    "run": "node AppTokenJsExample.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "form-data": "^4.0.0"
+  }
+}
