@@ -25,9 +25,9 @@ function createSignature(config) {
   signature.update(ts + config.method.toUpperCase() + config.url);
 
   if (config.data instanceof FormData) {
-    signature.update (config.data.getBuffer());
+    signature.update(config.data.getBuffer());
   } else if (config.data) {
-    signature.update (config.data);
+    signature.update(config.data);
   }
 
   config.headers['X-App-Access-Ts'] = ts;
