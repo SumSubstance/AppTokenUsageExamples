@@ -12,8 +12,9 @@ class FixedInfo < JSONable
   # @param [nil] last_name    - last name of the applicant
   # @param [nil] dob          - date of birth of the applicant in the yyyy-mm-dd format
   # @return [nil]
-  def initialzie(first_name, last_name, middle_name, dob)
+  def initialize(first_name, last_name, middle_name, dob)
     @first_name = first_name
+    @middle_name = middle_name
     @last_name = last_name
     @dob = dob
   end
