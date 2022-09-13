@@ -25,7 +25,9 @@ class AppTokenGuzzlePhpExample
         $url = '/resources/applicants?levelName=' . $levelName;
         $request = new GuzzleHttp\Psr7\Request('POST', SUMSUB_TEST_BASE_URL . $url);
         $request = $request->withHeader('Content-Type', 'application/json');
-        $request = $request->withBody(GuzzleHttp\Psr7\stream_for(json_encode($requestBody)));
+        //$request = $request->withBody(GuzzleHttp\Psr7\stream_for(json_encode($requestBody)));
+        $request = $request->withBody(GuzzleHttp\Psr7\Utils::streamFor(json_encode($requestBody)));
+
 
         $responseBody = $this->sendHttpRequest($request, $url)->getBody();
         return json_decode($responseBody)->{'id'};
