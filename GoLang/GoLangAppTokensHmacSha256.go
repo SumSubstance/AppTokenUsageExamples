@@ -8,9 +8,13 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"log"
+	"mime/multipart"
 	"net/http"
+	"os"
+	"strings"
 	"time"
 
 	"github.com/google/uuid"
@@ -36,6 +40,10 @@ func main() {
 
 	// https://developers.sumsub.com/api-reference/#creating-an-applicant
 	applicant = CreateApplicant(applicant, levelName)
+
+	// https://developers.sumsub.com/api-reference/#adding-an-id-document
+	idDoc := AddDocument(applicant.ID)
+	fmt.Println(idDoc)
 
 	// https://developers.sumsub.com/api-reference/#getting-applicant-data
 	applicant = GetApplicantInfo(applicant)
@@ -107,6 +115,53 @@ func GetApplicantInfo(applicant model.Applicant) model.Applicant {
 	pp.Println(r)
 
 	return r
+}
+
+func AddDocument(applicantId string) model.IdDoc {
+	file, err := os.Open("resources/images/sumsub-logo.png")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer file.Close()
+
+	meta, err := json.Marshal(model.IdDoc{
+		IdDocType: "PASSPORT",
+		Country:   "GBR",
+	})
+
+	var b bytes.Buffer
+	w := multipart.NewWriter(&b)
+
+	var fw io.Writer
+	if fw, err = w.CreateFormFile("content", file.Name()); err != nil {
+		log.Fatal(err)
+	}
+	if _, err = io.Copy(fw, file); err != nil {
+		log.Fatal(err)
+	}
+
+	if fw, err = w.CreateFormField("metadata"); err != nil {
+		log.Fatal(err)
+	}
+	if _, err = io.Copy(fw, strings.NewReader(string(meta))); err != nil {
+		log.Fatal(err)
+	}
+	w.Close()
+
+	resp, err := _makeSumsubRequest(
+		"/resources/applicants/"+applicantId+"/info/idDoc",
+		"POST",
+		w.FormDataContentType(),
+		b.Bytes(),
+	)
+
+	var doc model.IdDoc
+	err = json.Unmarshal(resp, &doc)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return doc
 }
 
 //X-App-Token - an App Token that you generate in our dashboard
