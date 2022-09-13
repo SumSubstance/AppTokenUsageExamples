@@ -10,6 +10,7 @@ import requests
 SUMSUB_SECRET_KEY = "YOUR_SUMSUB_SECRET_KEY"  # Example: Hej2ch71kG2kTd1iIUDZFNsO5C1lh5Gq
 SUMSUB_APP_TOKEN = "YOUR_SUMSUB_APP_TOKEN"  # Example: sbx:uY0CgwELmgUAEyl4hNWxLngb.0WSeQeiYny4WEqmAALEAiK2qTC96fBad
 SUMSUB_TEST_BASE_URL = "https://api.sumsub.com"
+REQUEST_TIMEOUT = 60
 # Please don't forget to change token and secret key values to production ones when switching to production
 
 def create_applicant(external_user_id, level_name):
@@ -26,7 +27,7 @@ def create_applicant(external_user_id, level_name):
                          data=json.dumps(body),
                          headers=headers))
     s = requests.Session()
-    response = s.send(resp)
+    response = s.send(resp, timeout=REQUEST_TIMEOUT)
     applicant_id = (response.json()['id'])
     return applicant_id
 
@@ -34,7 +35,8 @@ def create_applicant(external_user_id, level_name):
 def add_document(applicant_id):
     # https://developers.sumsub.com/api-reference/#adding-an-id-document
     with open('img.jpg', 'wb') as handle:
-        response = requests.get('https://fv2-1.failiem.lv/thumb_show.php?i=gdmn9sqy&view', stream=True)
+        response = requests.get('https://fv2-1.failiem.lv/thumb_show.php?i=gdmn9sqy&view', stream=True,
+                                timeout=REQUEST_TIMEOUT)
         if not response.ok:
             logging.error(response)
 
@@ -49,7 +51,7 @@ def add_document(applicant_id):
                          files=[('content', open('img.jpg', 'rb'))]
                          ))
     sw = requests.Session()
-    response = sw.send(resp)
+    response = sw.send(resp, timeout=REQUEST_TIMEOUT)
     return response.headers['X-Image-Id']
 
 
@@ -58,7 +60,7 @@ def get_applicant_status(applicant_id):
     url = SUMSUB_TEST_BASE_URL + '/resources/applicants/' + applicant_id + '/requiredIdDocsStatus'
     resp = sign_request(requests.Request('GET', url))
     s = requests.Session()
-    response = s.send(resp)
+    response = s.send(resp, timeout=REQUEST_TIMEOUT)
     return response
 
 
@@ -72,7 +74,7 @@ def get_access_token(external_user_id, level_name):
                                          params=params,
                                          headers=headers))
     s = requests.Session()
-    response = s.send(resp)
+    response = s.send(resp, timeout=REQUEST_TIMEOUT)
     token = (response.json()['token'])
 
     return token
