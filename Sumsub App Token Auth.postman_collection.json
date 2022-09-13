@@ -283,11 +283,6 @@
 			"key": "levelName",
 			"value": "basic-kyc-level",
 			"type": "default"
-		},
-		{
-			"key": "form-data-body",
-			"value": "",
-			"type": "default"
 		}
 	]
 }
