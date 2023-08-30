@@ -43,7 +43,7 @@ function createApplicant(externalUserId, levelName) {
   console.log("Creating an applicant...");
 
   var method = 'post';
-  var url = '/resources/applicants?levelName=' + levelName;
+  var url = '/resources/applicants?levelName=' + encodeURIComponent(levelName);
   var ts = Math.floor(Date.now() / 1000);
   
   var body = {
@@ -131,7 +131,7 @@ function createAccessToken (externalUserId, levelName = 'basic-kyc-level', ttlIn
   console.log("Creating an access token for initializng SDK...");
 
   var method = 'post';
-  var url = `/resources/accessTokens?userId=${externalUserId}&ttlInSecs=${ttlInSecs}&levelName=${levelName}`;
+  var url = '/resources/accessTokens?userId=' + encodeURIComponent(externalUserId) + '&ttlInSecs=' + ttlInSecs + '&levelName=' + encodeURIComponent(levelName);
 
   var headers = {
       'Accept': 'application/json',
