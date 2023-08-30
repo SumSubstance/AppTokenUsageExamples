@@ -17,6 +17,7 @@ import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.File;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -63,7 +64,7 @@ public class AppTokenJavaExample {
         Applicant applicant = new Applicant(externalUserId);
 
         Response response = sendPost(
-                "/resources/applicants?levelName=" + levelName,
+                "/resources/applicants?levelName=" + URLEncoder.encode(levelName, StandardCharsets.UTF_8.toString()),
                 RequestBody.create(
                         objectMapper.writeValueAsString(applicant),
                         MediaType.parse("application/json; charset=utf-8")));
@@ -98,7 +99,7 @@ public class AppTokenJavaExample {
     public static String getAccessToken(String externalUserId, String levelName) throws NoSuchAlgorithmException, InvalidKeyException, IOException {
         // https://developers.sumsub.com/api-reference/#access-tokens-for-sdks
 
-        Response response = sendPost("/resources/accessTokens?userId=" + externalUserId + "&levelName=" + levelName, RequestBody.create(new byte[0], null));
+        Response response = sendPost("/resources/accessTokens?userId=" + URLEncoder.encode(externalUserId, StandardCharsets.UTF_8.toString()) + "&levelName=" + URLEncoder.encode(levelName, StandardCharsets.UTF_8.toString()), RequestBody.create(new byte[0], null));
 
         ResponseBody responseBody = response.body();
         return responseBody != null ? responseBody.string() : null;
