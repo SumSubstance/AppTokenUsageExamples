@@ -153,7 +153,7 @@ class SumsubClient
         $data = (string)$response->getBody();
         $json = json_decode($data, true, JSON_THROW_ON_ERROR);
         if (!is_array($json)) {
-            throw new \RuntimeException('Invalid response received: ' . $data);
+            throw new RuntimeException('Invalid response received: ' . $data);
         }
 
         return $json;
