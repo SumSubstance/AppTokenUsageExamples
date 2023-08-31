@@ -1,27 +1,17 @@
-# AppTokenPhp
+# PHP examples for common use cases
 
 The description of the flow can be found here: https://developers.sumsub.com/api-flow/#api-integration-phases
 
-Such actions are presented below:
-
-## Installation
+## Usage
 1. Install composer locally according to the [guide](https://getcomposer.org/download/)
-2. Set up GuzzleHttp/guzzle according to the [guide](https://docs.guzzlephp.org/en/stable/overview.html#installation) (or use existsing composer.json)
-3. Replace autoload.php to your path
-4. Get and replace auth data in AppTokenPhpExample.php
-5. Start AppTokenPhpExample as script
+2. Run `composer install`
+3. Replace values of the `SUMSUB_SECRET_KEY` and `SUMSUB_APP_TOKEN` with your [keys](https://developers.sumsub.com/api-reference/#app-tokens)
+4. Run `php example.php`
 
-#1 Authorization
-https://developers.sumsub.com/api-reference/#app-tokens
+The next parts of documentation are covered in this example:
 
-#2 Creating an applicant
-https://developers.sumsub.com/api-reference/#creating-an-applicant
-
-#3 Adding a document to the applicant
-https://developers.sumsub.com/api-reference/#adding-an-id-document
-
-#4 Getting applicant status
-https://developers.sumsub.com/api-reference/#getting-applicant-status-api
-
-#5 Generating an access token
-https://developers.sumsub.com/api-reference/#access-tokens-for-sdks
+* [Authorization](https://developers.sumsub.com/api-reference/#app-tokens)
+* [Creating an applicant](https://developers.sumsub.com/api-reference/#creating-an-applicant)
+* [Adding a document to the applicant](https://developers.sumsub.com/api-reference/#adding-an-id-document)
+* [Getting applicant status](https://developers.sumsub.com/api-reference/#getting-applicant-status-api)
+* [Generating an access token](https://developers.sumsub.com/api-reference/#access-tokens-for-sdks)

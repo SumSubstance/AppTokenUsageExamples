@@ -1,5 +1,13 @@
 {
+    "name": "sumsub/app-token-usage-example",
+    "description": "PHP examples for common use cases",
+    "type": "project",
     "require": {
-        "guzzlehttp/guzzle": "^6.5"
+        "guzzlehttp/guzzle": "^7.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "Sumsub\\AppTokenUsageExample\\": "src/"
+        }
     }
 }
