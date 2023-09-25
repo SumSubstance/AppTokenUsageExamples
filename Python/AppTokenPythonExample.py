@@ -13,6 +13,7 @@ SUMSUB_TEST_BASE_URL = "https://api.sumsub.com"
 REQUEST_TIMEOUT = 60
 # Please don't forget to change token and secret key values to production ones when switching to production
 
+
 def create_applicant(external_user_id, level_name):
     # https://developers.sumsub.com/api-reference/#creating-an-applicant
     body = {'externalUserId': external_user_id}
@@ -87,7 +88,7 @@ def sign_request(request: requests.Request) -> requests.PreparedRequest:
     path_url = prepared_request.path_url  # includes encoded query params
     # could be None so we use an empty **byte** string here
     body = b'' if prepared_request.body is None else prepared_request.body
-    if type(body) == str:
+    if isinstance(body, str):
         body = body.encode('utf-8')
     data_to_sign = str(now).encode('utf-8') + method.encode('utf-8') + path_url.encode('utf-8') + body
     # hmac needs bytes
