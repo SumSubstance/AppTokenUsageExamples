@@ -15,6 +15,8 @@ axios.interceptors.request.use(createSignature, function (error) {
   return Promise.reject(error);
 })
 
+// Make sure to specify 'Content-Type' header with value of 'application/json' if you're not sending a body for most of requests
+
 // This function creates signature for the request as described here: https://developers.sumsub.com/api-reference/#app-tokens
 
 function createSignature(config) {
