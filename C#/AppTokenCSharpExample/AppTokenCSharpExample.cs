@@ -146,7 +146,7 @@ namespace AppTokenCSharpExample
 
             if (!response.IsSuccessStatusCode)
             {
-                // https://docs.sumsub.com/reference/error-codes
+                // https://docs.sumsub.com/reference/review-api-health
                 // If an unsuccessful answer is received, please log the value of the "correlationId" parameter.
                 // Then perhaps you should throw the exception. (depends on the logic of your code)
             }
@@ -173,7 +173,7 @@ namespace AppTokenCSharpExample
 
             if (!response.IsSuccessStatusCode)
             {
-                // https://docs.sumsub.com/reference/error-codes
+                // https://docs.sumsub.com/reference/review-api-health
                 // If an unsuccessful answer is received, please log the value of the "correlationId" parameter.
                 // Then perhaps you should throw the exception. (depends on the logic of your code)
             }
