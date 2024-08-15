@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "ce8dcf08-48af-4bfa-9c5c-a29972ab9cbd",
 		"name": "Sumsub App Token Auth",
-		"description": "# AppTokenUsageExamples\nExamples of signing requests using Sumsub authorization with App Tokens\n\nhttps://developers.sumsub.com/api-reference/#making-a-request\n\nPlease make sure to put your App Token and Secret Key at collection variables.\n\nThis repository contains some of the main Sum&Substance API methods.\nPlease share your feedback and suggestions using Telegram chat, dashboard livechat or email.\n\nUnfortunately, there is no proper way to sign form-data within Postman pre-request scripts. Please check out [code examples](https://github.com/SumSubstance/AppTokenUsageExamples) for more details.",
+		"description": "# AppTokenUsageExamples\nExamples of signing requests using Sumsub authorization with App Tokens\n\nhttps://docs.sumsub.com/reference/authentication\n\nPlease make sure to put your App Token and Secret Key at collection variables.\n\nThis repository contains some of the main Sum&Substance API methods.\nPlease share your feedback and suggestions using Telegram chat, dashboard livechat or email.\n\nUnfortunately, there is no proper way to sign form-data within Postman pre-request scripts. Please check out [code examples](https://github.com/SumSubstance/AppTokenUsageExamples) for more details.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
