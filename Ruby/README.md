@@ -1,24 +1,24 @@
 # AppTokenRuby
  
-  The description of the flow can be found here: https://developers.sumsub.com/api-flow/#api-integration-phases
+  The description of the flow can be found here: https://docs.sumsub.com/reference/get-started-with-api
   
   Such actions are presented below:
   
   
   #1 Authorization
-  https://developers.sumsub.com/api-reference/#app-tokens
+  https://docs.sumsub.com/reference/authentication
   
   #2 Creating an applicant
-  https://developers.sumsub.com/api-reference/#creating-an-applicant
+  https://docs.sumsub.com/reference/create-applicant
   
   #3 Adding a document to the applicant
-  https://developers.sumsub.com/api-reference/#adding-an-id-document
+  https://docs.sumsub.com/reference/add-id-documents
   
   #4 Getting applicant status
-  https://developers.sumsub.com/api-reference/#getting-applicant-status-api
+  https://docs.sumsub.com/reference/get-applicant-verification-steps-status
   
   #5 Getting applicant data
-  https://developers.sumsub.com/api-reference/#getting-applicant-data
+  https://docs.sumsub.com/reference/get-applicant-data
   
   #6 Generating an access token
-  https://developers.sumsub.com/api-reference/#access-tokens-for-sdks
+  https://docs.sumsub.com/reference/generate-access-token-query
