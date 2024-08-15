@@ -12,14 +12,14 @@ namespace AppTokenCSharpExample
 {
     internal class AppTokenCSharpExample
     {
-        // The description of the authorization method is available here: https://developers.sumsub.com/api-reference/#app-tokens
+        // The description of the authorization method is available here: https://docs.sumsub.com/reference/authentication
         private static readonly string SUMSUB_SECRET_KEY = "SUMSUB_SECRET_KEY"; // Example: Hej2ch71kG2kTd1iIUDZFNsO5C1lh5Gq - Please don't forget to change when switching to production
         private static readonly string SUMSUB_APP_TOKEN = "SUMSUB_APP_TOKEN";  // Example: sbx:uY0CgwELmgUAEyl4hNWxLngb.0WSeQeiYny4WEqmAALEAiK2qTC96fBad - Please don't forget to change when switching to production
         private static readonly string SUMSUB_TEST_BASE_URL = "https://api.sumsub.com";
 
         private static void Main(string[] args)
         {
-            // The description of the flow can be found here: https://developers.sumsub.com/api-flow/#api-integration-phases
+            // The description of the flow can be found here: https://docs.sumsub.com/reference/get-started-with-api
 
             // Such actions are presented below:
             // 1) Creating an applicant
@@ -48,7 +48,7 @@ namespace AppTokenCSharpExample
             Console.ReadLine();
         }
 
-        // https://developers.sumsub.com/api-reference/#getting-applicant-status-sdk
+        // https://docs.sumsub.com/reference/get-applicant-review-status
         public static async Task<Applicant> CreateApplicant(string externalUserId, string levelName)
         {
             Console.WriteLine("Creating an applicant...");
@@ -75,7 +75,7 @@ namespace AppTokenCSharpExample
             return applicant;
         }
 
-        // https://developers.sumsub.com/api-reference/#adding-an-id-document
+        // https://docs.sumsub.com/reference/add-id-documents
         public static async Task<HttpResponseMessage> AddDocument(string applicantId)
         {
             Console.WriteLine("Adding document to the applicant...");
@@ -112,7 +112,7 @@ namespace AppTokenCSharpExample
             }
         }
 
-        // https://developers.sumsub.com/api-reference/#getting-applicant-status-api
+        // https://docs.sumsub.com/reference/get-applicant-verification-steps-status
         public static async Task<HttpResponseMessage> GetApplicantStatus(string applicantId)
         {
             Console.WriteLine("Getting the applicant status...");
@@ -146,7 +146,7 @@ namespace AppTokenCSharpExample
 
             if (!response.IsSuccessStatusCode)
             {
-                // https://developers.sumsub.com/api-reference/#errors
+                // https://docs.sumsub.com/reference/error-codes
                 // If an unsuccessful answer is received, please log the value of the "correlationId" parameter.
                 // Then perhaps you should throw the exception. (depends on the logic of your code)
             }
@@ -173,7 +173,7 @@ namespace AppTokenCSharpExample
 
             if (!response.IsSuccessStatusCode)
             {
-                // https://developers.sumsub.com/api-reference/#errors
+                // https://docs.sumsub.com/reference/error-codes
                 // If an unsuccessful answer is received, please log the value of the "correlationId" parameter.
                 // Then perhaps you should throw the exception. (depends on the logic of your code)
             }
