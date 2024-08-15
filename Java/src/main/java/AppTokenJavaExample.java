@@ -25,7 +25,7 @@ import java.time.Instant;
 import java.util.UUID;
 
 public class AppTokenJavaExample {
-    // The description of the authorization method is available here: https://developers.sumsub.com/api-reference/#app-tokens
+    // The description of the authorization method is available here: https://docs.sumsub.com/reference/authentication
     private static final String SUMSUB_SECRET_KEY = "YOUR_SUMSUB_SECRET_KEY"; // Example: Hej2ch71kG2kTd1iIUDZFNsO5C1lh5Gq
     private static final String SUMSUB_APP_TOKEN = "YOUR_SUMSUB_APP_TOKEN"; // Example: sbx:uY0CgwELmgUAEyl4hNWxLngb.0WSeQeiYny4WEqmAALEAiK2qTC96fBad
     private static final String SUMSUB_TEST_BASE_URL = "https://api.sumsub.com";
@@ -34,7 +34,7 @@ public class AppTokenJavaExample {
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
     public static void main(String[] args) throws IOException, InvalidKeyException, NoSuchAlgorithmException {
-        // The description of the flow can be found here: https://developers.sumsub.com/api-flow/#api-integration-phases
+        // The description of the flow can be found here: https://docs.sumsub.com/reference/get-started-with-api
 
         // Such actions are presented below:
         // 1) Creating an applicant
@@ -59,7 +59,7 @@ public class AppTokenJavaExample {
     }
 
     public static String createApplicant(String externalUserId, String levelName) throws IOException, NoSuchAlgorithmException, InvalidKeyException {
-        // https://developers.sumsub.com/api-reference/#creating-an-applicant
+        // https://docs.sumsub.com/reference/create-applicant
 
         Applicant applicant = new Applicant(externalUserId);
 
@@ -75,7 +75,7 @@ public class AppTokenJavaExample {
     }
 
     public static String addDocument(String applicantId, File doc) throws NoSuchAlgorithmException, InvalidKeyException, IOException {
-        // https://developers.sumsub.com/api-reference/#adding-an-id-document
+        // https://docs.sumsub.com/reference/add-id-documents
 
         RequestBody requestBody = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
@@ -88,7 +88,7 @@ public class AppTokenJavaExample {
     }
 
     public static String getApplicantStatus(String applicantId) throws NoSuchAlgorithmException, InvalidKeyException, IOException {
-        // https://developers.sumsub.com/api-reference/#getting-applicant-status-api
+        // https://docs.sumsub.com/reference/get-applicant-verification-steps-status
 
         Response response = sendGet("/resources/applicants/" + applicantId + "/requiredIdDocsStatus");
 
@@ -97,7 +97,7 @@ public class AppTokenJavaExample {
     }
 
     public static String getAccessToken(String externalUserId, String levelName) throws NoSuchAlgorithmException, InvalidKeyException, IOException {
-        // https://developers.sumsub.com/api-reference/#access-tokens-for-sdks
+        // https://docs.sumsub.com/reference/generate-access-token-query
 
         Response response = sendPost("/resources/accessTokens?userId=" + URLEncoder.encode(externalUserId, StandardCharsets.UTF_8.toString()) + "&levelName=" + URLEncoder.encode(levelName, StandardCharsets.UTF_8.toString()), RequestBody.create(new byte[0], null));
 
@@ -119,7 +119,7 @@ public class AppTokenJavaExample {
         Response response = new OkHttpClient().newCall(request).execute();
 
         if (response.code() != 200 && response.code() != 201) {
-            // https://developers.sumsub.com/api-reference/#errors
+            // https://docs.sumsub.com/reference/review-api-health
             // If an unsuccessful answer is received, please log the value of the "correlationId" parameter.
             // Then perhaps you should throw the exception. (depends on the logic of your code)
         }
@@ -140,7 +140,7 @@ public class AppTokenJavaExample {
         Response response = new OkHttpClient().newCall(request).execute();
 
         if (response.code() != 200 && response.code() != 201) {
-            // https://developers.sumsub.com/api-reference/#errors
+            // https://docs.sumsub.com/reference/review-api-health
             // If an unsuccessful answer is received, please log the value of the "correlationId" parameter.
             // Then perhaps you should throw the exception. (depends on the logic of your code)
         }
