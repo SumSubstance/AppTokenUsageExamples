@@ -38,17 +38,17 @@ func main() {
 	applicant.FixedInfo = fixedInfo
 	applicant.ExternalUserID = externalUserId
 
-	// https://developers.sumsub.com/api-reference/#creating-an-applicant
+	// https://docs.sumsub.com/reference/create-applicant
 	applicant = CreateApplicant(applicant, levelName)
 
-	// https://developers.sumsub.com/api-reference/#adding-an-id-document
+	// https://docs.sumsub.com/reference/add-id-documents
 	idDoc := AddDocument(applicant.ID)
 	fmt.Println(idDoc)
 
-	// https://developers.sumsub.com/api-reference/#getting-applicant-data
+	// https://docs.sumsub.com/reference/get-applicant-data
 	applicant = GetApplicantInfo(applicant)
 
-	// https://developers.sumsub.com/api-reference/#access-tokens-for-sdks
+	// https://docs.sumsub.com/reference/generate-access-token-query
 	accessToken := GenerateAccessToken(applicant, levelName)
 
 	fmt.Println(accessToken.Token)
