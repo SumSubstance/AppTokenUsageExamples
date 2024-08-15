@@ -7,7 +7,7 @@ require_relative 'model/id_doc_types'
 require_relative 'model/jsonable'
 require 'securerandom'
 
-# The description of the authorization method is available here: https://developers.sumsub.com/api-reference/#app-tokens
+# The description of the authorization method is available here: https://docs.sumsub.com/reference/authentication
 APP_TOKEN = 'YOUR_SUMSUB_APP_TOKEN'.freeze # Example: sbx:uY0CgwELmgUAEyl4hNWxLngb.0WSeQeiYny4WEqmAALEAiK2qTC96fBad
 SECRET_KEY = 'YOUR_SUMSUB_SECRET_KEY'.freeze # Example: Hej2ch71kG2kTd1iIUDZFNsO5C1lh5Gq
 # Please don't forget to change token and secret key values to production ones when switching to production
@@ -16,7 +16,7 @@ def request_env_url(resource)
   "https://api.sumsub.com/resources/#{resource}"
 end
 
-# https://developers.sumsub.com/api-reference/#creating-an-applicant
+# https://docs.sumsub.com/reference/create-applicant
 
 def create_applicant(external_used_id, lang, level_name)
   resources = "applicants?levelName=#{level_name}"
@@ -31,7 +31,7 @@ def create_applicant(external_used_id, lang, level_name)
   )
 end
 
-# https://developers.sumsub.com/api-reference/#adding-an-id-document
+# https://docs.sumsub.com/reference/add-id-documents
 
 def upload_photo(applicant_id)
   resources = "applicants/#{applicant_id}/info/idDoc"
@@ -52,14 +52,14 @@ def upload_photo(applicant_id)
                   signed_header(resources, payload, 'POST', "multipart/form-data; boundary=#{bounds}"))
 end
 
-# https://developers.sumsub.com/api-reference/#getting-applicant-status-api
+# https://docs.sumsub.com/reference/get-applicant-verification-steps-status
 
 def get_applicant_status(applicant_id)
   resources = "applicants/#{applicant_id}/requiredIdDocsStatus"
   RestClient.get request_env_url(resources), signed_header(resources, nil, 'GET')
 end
 
-# https://developers.sumsub.com/api-reference/#getting-applicant-data
+# https://docs.sumsub.com/reference/get-applicant-data
 
 def get_applicant_data(applicant_id)
   resources = "applicants/#{applicant_id}/one"
@@ -67,7 +67,7 @@ def get_applicant_data(applicant_id)
   response = RestClient.get request_env_url(resources), signed_header(resources, nil, 'GET')
 end
 
-# https://developers.sumsub.com/api-reference/#access-tokens-for-sdks
+# https://docs.sumsub.com/reference/generate-access-token-query
 
 def generate_access_token(external_user_id, level_name = 'basic-kyc-level', ttl = 600)
   raise 'VIOLATION: Null id' if external_user_id.empty?
@@ -79,7 +79,7 @@ def generate_access_token(external_user_id, level_name = 'basic-kyc-level', ttl 
   JSON.parse(response.body)
 end
 
-# https://developers.sumsub.com/api-reference/#app-tokens headers example
+# https://docs.sumsub.com/reference/authentication headers example
 
 def signed_header(resource, body = nil, method = 'POST', content_type = 'application/json')
   epoch_time = Time.now.to_i
@@ -93,7 +93,6 @@ def signed_header(resource, body = nil, method = 'POST', content_type = 'applica
   }
 end
 
-# https://developers.sumsub.com/api-reference/#app-tokens
 
 def signed_message(time, resource, body, method = 'POST')
   key = SECRET_KEY
