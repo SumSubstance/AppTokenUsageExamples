@@ -14,7 +14,7 @@ REQUEST_TIMEOUT = 60
 # Please don't forget to change token and secret key values to production ones when switching to production
 
 def create_applicant(external_user_id, level_name):
-    # https://developers.sumsub.com/api-reference/#creating-an-applicant
+    # https://docs.sumsub.com/reference/create-applicant
     body = {'externalUserId': external_user_id}
     params = {'levelName': level_name}
     headers = {
@@ -33,7 +33,7 @@ def create_applicant(external_user_id, level_name):
 
 
 def add_document(applicant_id):
-    # https://developers.sumsub.com/api-reference/#adding-an-id-document
+    # https://docs.sumsub.com/reference/add-id-documents
     with open('img.jpg', 'wb') as handle:
         response = requests.get('https://fv2-1.failiem.lv/thumb_show.php?i=gdmn9sqy&view', stream=True,
                                 timeout=REQUEST_TIMEOUT)
@@ -56,7 +56,7 @@ def add_document(applicant_id):
 
 
 def get_applicant_status(applicant_id):
-    # https://developers.sumsub.com/api-reference/#getting-applicant-status-api
+    # https://docs.sumsub.com/reference/get-applicant-verification-steps-status
     url = SUMSUB_TEST_BASE_URL + '/resources/applicants/' + applicant_id + '/requiredIdDocsStatus'
     resp = sign_request(requests.Request('GET', url))
     s = requests.Session()
@@ -65,7 +65,7 @@ def get_applicant_status(applicant_id):
 
 
 def get_access_token(external_user_id, level_name):
-    # https://developers.sumsub.com/api-reference/#access-tokens-for-sdks
+    # https://docs.sumsub.com/reference/generate-access-token-query
     params = {'userId': external_user_id, 'ttlInSecs': '600', 'levelName': level_name}
     headers = {'Content-Type': 'application/json',
                'Content-Encoding': 'utf-8'
