@@ -23,7 +23,7 @@ class SumsubClient
     }
 
     /**
-     * https://developers.sumsub.com/api-reference/#creating-an-applicant
+     * https://docs.sumsub.com/reference/create-applicant
      *
      * @param string $externalUserId
      * @param string $levelName
@@ -49,7 +49,7 @@ class SumsubClient
     }
 
     /**
-     * https://developers.sumsub.com/api-reference/#adding-an-id-document
+     * https://docs.sumsub.com/reference/add-id-documents
      *
      * @param string $applicantId
      * @param string $filePath
@@ -84,7 +84,7 @@ class SumsubClient
     }
 
     /**
-     * https://developers.sumsub.com/api-reference/#getting-applicant-status-api
+     * https://docs.sumsub.com/reference/get-applicant-verification-steps-status
      *
      * @param string $applicantId
      * @throws RuntimeException
@@ -100,7 +100,7 @@ class SumsubClient
     }
 
     /**
-     * https://developers.sumsub.com/api-reference/#access-tokens-for-sdks
+     * https://docs.sumsub.com/reference/generate-access-token-query
      *
      * @param string $externalUserId
      * @param string $levelName
@@ -131,7 +131,7 @@ class SumsubClient
         try {
             $response = $this->guzzleClient->send($request);
             if ($response->getStatusCode() != 200 && $response->getStatusCode() != 201) {
-                // https://developers.sumsub.com/api-reference/#errors
+                // https://docs.sumsub.com/reference/review-api-health#errors
                 // If an unsuccessful answer is received, please log the value of the `correlationId` parameter.
 
                 throw new RuntimeException('Invalid status code received: ' . $response->getStatusCode() . '. Body: ' . $response->getBody());
