@@ -6,7 +6,7 @@ class FixedInfo < JSONable
 
   def initialize; end
 
-  # https://developers.sumsub.com/api-reference/#creating-an-applicant
+  # https://docs.sumsub.com/reference/get-applicant-data
   # please note we do not recommend usage of provided info functional, cause it can drop your conversion rate.
   # @param [nil] first_name   - name of the applicant
   # @param [nil] last_name    - last name of the applicant
