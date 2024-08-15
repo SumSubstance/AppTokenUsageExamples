@@ -17,7 +17,7 @@ axios.interceptors.request.use(createSignature, function (error) {
 
 // Make sure to specify 'Content-Type' header with value of 'application/json' if you're not sending a body for most of requests
 
-// This function creates signature for the request as described here: https://developers.sumsub.com/api-reference/#app-tokens
+// This function creates signature for the request as described here: https://docs.sumsub.com/reference/authentication
 
 function createSignature(config) {
   console.log('Creating a signature for the request...');
@@ -40,7 +40,7 @@ function createSignature(config) {
 
 // These functions configure requests for specified method
 
-// https://developers.sumsub.com/api-reference/#creating-an-applicant
+// https://docs.sumsub.com/reference/create-applicant
 function createApplicant(externalUserId, levelName) {
   console.log("Creating an applicant...");
 
@@ -66,7 +66,7 @@ function createApplicant(externalUserId, levelName) {
   return config;
 }
 
-// https://developers.sumsub.com/api-reference/#adding-an-id-document
+// https://docs.sumsub.com/reference/add-id-documents
 function addDocument(applicantId) {
   console.log("Adding document to the applicant...");
 
@@ -108,7 +108,7 @@ function addDocument(applicantId) {
   return config;
 }
 
-// https://developers.sumsub.com/api-reference/#getting-applicant-status-sdk
+// https://docs.sumsub.com/reference/get-applicant-review-status
 function getApplicantStatus(applicantId) {
   console.log("Getting the applicant status...");
 
@@ -128,7 +128,7 @@ function getApplicantStatus(applicantId) {
   return config;
 }
 
-// https://developers.sumsub.com/api-reference/#access-tokens-for-sdks
+// https://docs.sumsub.com/reference/generate-access-token-query
 function createAccessToken (externalUserId, levelName = 'basic-kyc-level', ttlInSecs = 600) {
   console.log("Creating an access token for initializng SDK...");
 
@@ -149,7 +149,7 @@ function createAccessToken (externalUserId, levelName = 'basic-kyc-level', ttlIn
 }
 
 // This section contains requests to server using configuration functions
-// The description of the flow can be found here: https://developers.sumsub.com/api-flow/#api-integration-phases
+// The description of the flow can be found here: https://docs.sumsub.com/reference/get-started-with-api
 
         // Such actions are presented below:
         // 1) Creating an applicant
