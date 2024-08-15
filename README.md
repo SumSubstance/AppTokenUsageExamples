@@ -1,7 +1,7 @@
 # AppTokenUsageExamples
 Examples of signing requests using SumSub authorization with App Tokens
 
-https://developers.sumsub.com/api-reference/#making-a-request
+https://docs.sumsub.com/reference/authentication
 
 This repository contains all of the main Sum&Substance API methods.
 Please share your feedback and suggestions using Telegram chat, dashboard livechat or email. 
