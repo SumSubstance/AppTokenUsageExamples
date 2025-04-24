@@ -3,7 +3,7 @@
     "description": "PHP examples for common use cases",
     "type": "project",
     "require": {
-        "guzzlehttp/guzzle": "^7.8"
+        "guzzlehttp/guzzle": "^7.9"
     },
     "autoload": {
         "psr-4": {
