@@ -5,7 +5,6 @@ namespace Sumsub\AppTokenUsageExample;
 
 use GuzzleHttp;
 use GuzzleHttp\Utils;
-use Psr\Http\Message\MessageInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use RuntimeException;
@@ -112,18 +111,15 @@ class SumsubClient
     public function getAccessToken(string $externalUserId, string $levelName): array
     {
         $url = '/resources/accessTokens/sdk';
+        $body = [
+            'userId' => $externalUserId,
+            'levelName' => $levelName
+        ];
+
+        /** @var RequestInterface $request */
         $request = (new GuzzleHttp\Psr7\Request('POST', $url))
             ->withHeader('Content-Type', 'application/json')
-            ->withBody(
-                GuzzleHttp\Psr7\Utils::streamFor(
-                    Utils::jsonEncode(
-                        [
-                            'userId' => $externalUserId,
-                            'levelName' => $levelName
-                        ]
-                    )
-                )
-            );
+            ->withBody(GuzzleHttp\Psr7\Utils::streamFor(Utils::jsonEncode($body)));
 
         $response = $this->sendRequest($request);
         return $this->parseBody($response);
@@ -134,7 +130,7 @@ class SumsubClient
      * @throws RuntimeException
      * @return ResponseInterface
      */
-    protected function sendRequest(MessageInterface $request): ResponseInterface
+    protected function sendRequest(RequestInterface $request): ResponseInterface
     {
         $now = time();
         $request = $request->withHeader('X-App-Token', $this->appToken)
