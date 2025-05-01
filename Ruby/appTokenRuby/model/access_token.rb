@@ -2,13 +2,13 @@
 require_relative 'jsonable'
 
 class FixedInfo < JSONable
-  attr_accessor :userId, :levelName
+  attr_accessor :user_id, :level_name
 
   def initialize; end
 
-  def initialize(userId, levelName)
-    @userId = userId
-    @levelName = levelName
+  def initialize(user_id, level_name)
+    @user_id = user_id
+    @level_name = level_name
   end
 
 end
