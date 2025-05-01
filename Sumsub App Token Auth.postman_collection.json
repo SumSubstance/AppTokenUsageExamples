@@ -88,24 +88,24 @@
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n          \"userId\": \"{{externalUserId}}\",\n          \"levelName\": \"{{levelName}}\",\n          }\n      }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "{{sumsub_root_url}}/resources/accessTokens?userId={{externalUserId}}&levelName={{levelName}}",
+					"raw": "{{sumsub_root_url}}/resources/accessTokens/sdk",
 					"host": [
 						"{{sumsub_root_url}}"
 					],
 					"path": [
 						"resources",
-						"accessTokens"
-					],
-					"query": [
-						{
-							"key": "userId",
-							"value": "{{externalUserId}}"
-						},
-						{
-							"key": "levelName",
-							"value": "{{levelName}}"
-						}
+						"accessTokens",
+						"sdk"
 					]
 				}
 			},
