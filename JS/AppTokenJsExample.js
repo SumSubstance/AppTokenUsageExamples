@@ -128,12 +128,18 @@ function getApplicantStatus(applicantId) {
   return config;
 }
 
-// https://docs.sumsub.com/reference/generate-access-token-query
-function createAccessToken (externalUserId, levelName = 'basic-kyc-level', ttlInSecs = 600) {
+// https://docs.sumsub.com/reference/generate-access-token
+function createAccessToken(externalUserId, levelName = 'basic-kyc-level', ttlInSecs = 600) {
   console.log("Creating an access token for initializng SDK...");
+  
+  var body = {
+      userId: externalUserId,
+      levelName: levelName,
+      ttlInSecs: ttlInSecs
+  };
 
   var method = 'post';
-  var url = '/resources/accessTokens?userId=' + encodeURIComponent(externalUserId) + '&ttlInSecs=' + ttlInSecs + '&levelName=' + encodeURIComponent(levelName);
+  var url = '/resources/accessTokens/sdk;
 
   var headers = {
       'Accept': 'application/json',
@@ -143,7 +149,7 @@ function createAccessToken (externalUserId, levelName = 'basic-kyc-level', ttlIn
   config.method = method;
   config.url = url;
   config.headers = headers;
-  config.data = null;
+  config.data = JSON.stringify(body);
 
   return config;
 }
