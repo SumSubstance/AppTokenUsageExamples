@@ -1,5 +1,6 @@
 require 'json'
 require 'rest-client'
+require_relative 'model/access_token'
 require_relative 'model/applicant'
 require_relative 'model/fixed_info'
 require_relative 'model/metadata'
@@ -67,14 +68,23 @@ def get_applicant_data(applicant_id)
   response = RestClient.get request_env_url(resources), signed_header(resources, nil, 'GET')
 end
 
-# https://docs.sumsub.com/reference/generate-access-token-query
+# https://docs.sumsub.com/reference/generate-access-token
 
 def generate_access_token(external_user_id, level_name = 'basic-kyc-level', ttl = 600)
   raise 'VIOLATION: Null id' if external_user_id.empty?
+  
+  resources = "accessTokens/sdk"
+  
+  body = AccessToken.new(external_used_id, level_name).serialize
+  puts body
+  header = signed_header(resources, body)
 
   # Send the request
-  resources = "accessTokens?userId=#{external_user_id.to_s}&ttlInSecs=#{ttl.to_s}&levelName=#{level_name}"
-  response = RestClient.post(request_env_url(resources), nil, signed_header(resources, nil, 'POST'))
+  response = RestClient.post(
+    request_env_url(resources),
+    body,
+    header
+  )
 
   JSON.parse(response.body)
 end
