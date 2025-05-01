@@ -97,9 +97,14 @@ public class AppTokenJavaExample {
     }
 
     public static String getAccessToken(String externalUserId, String levelName) throws NoSuchAlgorithmException, InvalidKeyException, IOException {
-        // https://docs.sumsub.com/reference/generate-access-token-query
+        // https://docs.sumsub.com/reference/generate-access-token
 
-        Response response = sendPost("/resources/accessTokens?userId=" + URLEncoder.encode(externalUserId, StandardCharsets.UTF_8.toString()) + "&levelName=" + URLEncoder.encode(levelName, StandardCharsets.UTF_8.toString()), RequestBody.create(new byte[0], null));
+        AccessToken accessTokenRequest = new AccessToken(externalUserId, levelName);
+
+        Response response = sendPost("/resources/accessTokens/sdk", 
+                RequestBody.create(
+                        objectMapper.writeValueAsString(accessTokenRequest),
+                        MediaType.parse("application/json; charset=utf-8")));
 
         ResponseBody responseBody = response.body();
         return responseBody != null ? responseBody.string() : null;
