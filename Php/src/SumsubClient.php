@@ -109,8 +109,15 @@ class SumsubClient
      */
     public function getAccessToken(string $externalUserId, string $levelName): array
     {
-        $url = '/resources/accessTokens?' . http_build_query(['userId' => $externalUserId, 'levelName' => $levelName]);
-        $request = new GuzzleHttp\Psr7\Request('POST', $url);
+        $requestBody = [
+            'userId' => $externalUserId,
+            'levelName' => $levelName
+        ];
+        
+        $url = '/resources/accessTokens/sdk';
+        $request = (new GuzzleHttp\Psr7\Request('POST', $url))
+            ->withHeader('Content-Type', 'application/json')
+            ->withBody(GuzzleHttp\Psr7\Utils::streamFor(json_encode($requestBody)));;
 
         $response = $this->sendRequest($request);
         return $this->parseBody($response);
