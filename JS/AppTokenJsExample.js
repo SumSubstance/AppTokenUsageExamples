@@ -142,7 +142,8 @@ function createAccessToken(externalUserId, levelName = 'basic-kyc-level', ttlInS
   var url = '/resources/accessTokens/sdk;
 
   var headers = {
-      'Accept': 'application/json',
+      'Accept': 'application/json',    
+      'Content-Type': 'application/json',
       'X-App-Token': SUMSUB_APP_TOKEN
   };
 
