@@ -100,7 +100,7 @@ class SumsubClient
     }
 
     /**
-     * https://docs.sumsub.com/reference/generate-access-token-query
+     * https://docs.sumsub.com/reference/generate-access-token
      *
      * @param string $externalUserId
      * @param string $levelName
