@@ -55,11 +55,15 @@ func main() {
 }
 
 func GenerateAccessToken(applicant model.Applicant, levelName string) model.AccessToken {
+	postBody, _ := json.Marshal(model.AccessToken{
+		userId: applicant.ExternalUserID,
+		levelName:   levelName,
+	})
 
-	b, err := _makeSumsubRequest("/resources/accessTokens?userId="+applicant.ExternalUserID+"&levelName="+levelName,
+	b, err := _makeSumsubRequest("/resources/accessTokens/sdk,
 		"POST",
 		"application/json",
-		[]byte(""))
+		postBody)
 	if err != nil {
 		log.Fatal(err)
 	}
