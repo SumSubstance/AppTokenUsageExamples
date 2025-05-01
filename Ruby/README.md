@@ -21,4 +21,4 @@
   https://docs.sumsub.com/reference/get-applicant-data
   
   #6 Generating an access token
-  https://docs.sumsub.com/reference/generate-access-token-query
+  https://docs.sumsub.com/reference/generate-access-token
