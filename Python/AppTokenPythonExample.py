@@ -65,13 +65,14 @@ def get_applicant_status(applicant_id):
 
 
 def get_access_token(external_user_id, level_name):
-    # https://docs.sumsub.com/reference/generate-access-token-query
-    params = {'userId': external_user_id, 'ttlInSecs': '600', 'levelName': level_name}
+    # https://docs.sumsub.com/reference/generate-access-token
+    body = {'userId': external_user_id, 'levelName': level_name}
     headers = {'Content-Type': 'application/json',
                'Content-Encoding': 'utf-8'
                }
-    resp = sign_request(requests.Request('POST', SUMSUB_TEST_BASE_URL + '/resources/accessTokens',
-                                         params=params,
+    
+    resp = sign_request(requests.Request('POST', SUMSUB_TEST_BASE_URL + '/resources/accessTokens/sdk',
+                                         data=json.dumps(body),
                                          headers=headers))
     s = requests.Session()
     response = s.send(resp, timeout=REQUEST_TIMEOUT)
