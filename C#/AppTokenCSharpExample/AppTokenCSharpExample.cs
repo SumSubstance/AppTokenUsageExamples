@@ -121,9 +121,21 @@ namespace AppTokenCSharpExample
             return response;
         }
 
-        public static async Task<HttpResponseMessage> GetAccessToken(string applicantId, string levelName)
+        public static async Task<HttpResponseMessage> GetAccessToken(string externalUserId, string levelName)
+
+            var body = new
+            {
+                userId = externalUserId,
+                levelName = levelName               
+            };
+
+            // Create the request body
+            var requestBody = new HttpRequestMessage(HttpMethod.Post, SUMSUB_TEST_BASE_URL)
+            {
+                Content = new StringContent(JsonConvert.SerializeObject(body), Encoding.UTF8, "application/json")
+            };
         {
-            var response = await SendPost($"/resources/accessTokens?userId={applicantId}&levelName={levelName}", new HttpRequestMessage());
+            var response = await SendPost($"/resources/accessTokens/sdk", requestBody);
             return response;
         }
 
