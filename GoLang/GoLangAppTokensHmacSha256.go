@@ -1,7 +1,7 @@
 package main
 
 import (
-	"./model"
+	"model"
 	"bytes"
 	"crypto/hmac"
 	"crypto/sha256"
