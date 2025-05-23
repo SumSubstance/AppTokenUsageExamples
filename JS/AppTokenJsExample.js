@@ -139,7 +139,7 @@ function createAccessToken(externalUserId, levelName = 'basic-kyc-level', ttlInS
   };
 
   var method = 'post';
-  var url = '/resources/accessTokens/sdk;
+  var url = '/resources/accessTokens/sdk';
 
   var headers = {
       'Accept': 'application/json',    
