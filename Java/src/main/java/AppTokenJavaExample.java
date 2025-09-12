@@ -10,6 +10,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
+import okhttp3.logging.HttpLoggingInterceptor;
 import okio.Buffer;
 import org.apache.commons.codec.binary.Hex;
 
@@ -48,7 +49,7 @@ public class AppTokenJavaExample {
         String applicantId = createApplicant(externalUserId, levelName);
         System.out.println("The applicant (" + externalUserId + ") was successfully created: " + applicantId);
 
-        String imageId = addDocument(applicantId, new File(AppTokenJavaExample.class.getResource("/images/sumsub-logo.png").getFile()));
+        String imageId = addDocument(applicantId, new File(AppTokenJavaExample.class.getResource("/images/1128061-Germany-ID_front.png").getFile()));
         System.out.println("Identifier of the added document: " + imageId);
 
         String applicantStatusStr = getApplicantStatus(applicantId);
@@ -84,6 +85,11 @@ public class AppTokenJavaExample {
                 .build();
 
         Response response = sendPost("/resources/applicants/" + applicantId + "/info/idDoc", requestBody);
+        if (!response.isSuccessful()) {
+            System.out.println(response.code());
+            System.out.println(response.body().string());
+            throw new RuntimeException("RESPONSE NOT 200");
+        }
         return response.headers().get("X-Image-Id");
     }
 
@@ -121,7 +127,15 @@ public class AppTokenJavaExample {
                 .post(requestBody)
                 .build();
 
-        Response response = new OkHttpClient().newCall(request).execute();
+
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .addInterceptor(logging)
+                .build();
+
+        Response response = okHttpClient.newCall(request).execute();
 
         if (response.code() != 200 && response.code() != 201) {
             // https://docs.sumsub.com/reference/review-api-health
