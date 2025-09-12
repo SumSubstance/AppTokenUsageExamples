@@ -1,0 +1,1300 @@
+{
+	"info": {
+		"_postman_id": "1e982630-2cc8-438d-87f0-18357616704c",
+		"name": "Transaction Monitoring and Travel Rule",
+		"description": "This collection provides ready-to-use API requests for **Transaction Monitoring** and **Travel Rule** products, helping you test and integrate them quickly.\n\nIn this collection, \\`txnId\\` and \\`externalUserId\\` are generated automatically for creating new transactions and applicants respectively.  \n\nIf you need to use your own values, please specify them directly in the request bodies.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20504570"
+	},
+	"item": [
+		{
+			"name": "Transaction Monitoring",
+			"item": [
+				{
+					"name": "Transaction notes",
+					"item": [
+						{
+							"name": "Add transaction notes",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"txnId\": \"{{id}}\",\n    \"tags\": [\n        \"First tag\",\n        \"Second tag\"\n        ],\n    \"note\": \"This is a test note\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{sumsub_root_url}}/resources/kyt/txns/notes",
+									"host": [
+										"{{sumsub_root_url}}"
+									],
+									"path": [
+										"resources",
+										"kyt",
+										"txns",
+										"notes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get transaction notes",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{sumsub_root_url}}/resources/kyt/txns/{{id}}/notes",
+									"host": [
+										"{{sumsub_root_url}}"
+									],
+									"path": [
+										"resources",
+										"kyt",
+										"txns",
+										"{{id}}",
+										"notes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit transaction notes",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"txnId\": \"{{id}}\",\n  \"id\": \"{{noteId}}\",\n  \"note\": \"This is a new test note\",\n  \"tags\": [\n    \"Third tag\"\n  ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{sumsub_root_url}}/resources/kyt/txns/notes",
+									"host": [
+										"{{sumsub_root_url}}"
+									],
+									"path": [
+										"resources",
+										"kyt",
+										"txns",
+										"notes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Remove transaction notes",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"txnId\": \"{{id}}\",\n  \"id\": \"{{noteId}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{sumsub_root_url}}/resources/kyt/txns/notes",
+									"host": [
+										"{{sumsub_root_url}}"
+									],
+									"path": [
+										"resources",
+										"kyt",
+										"txns",
+										"notes"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Transaction tags",
+					"item": [
+						{
+							"name": "Add transaction tags",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[\"Structuring\", \"Anomaly med\", \"Bonus abuse\", \"Suspicious pattern\"]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{sumsub_root_url}}/resources/kyt/txns/{{id}}/tags",
+									"host": [
+										"{{sumsub_root_url}}"
+									],
+									"path": [
+										"resources",
+										"kyt",
+										"txns",
+										"{{id}}",
+										"tags"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get transaction tags",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{sumsub_root_url}}/resources/kyt/txns/{{id}}/tags",
+									"host": [
+										"{{sumsub_root_url}}"
+									],
+									"path": [
+										"resources",
+										"kyt",
+										"txns",
+										"{{id}}",
+										"tags"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Remove transaction tags",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[\"Structuring\", \"Anomaly med\"]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{sumsub_root_url}}/resources/kyt/txns/{{id}}/tags",
+									"host": [
+										"{{sumsub_root_url}}"
+									],
+									"path": [
+										"resources",
+										"kyt",
+										"txns",
+										"{{id}}",
+										"tags"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Submit transaction",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{sumsub_root_url}}/resources/applicants/{{applicantId}}/kyt/txns/-/data",
+							"host": [
+								"{{sumsub_root_url}}"
+							],
+							"path": [
+								"resources",
+								"applicants",
+								"{{applicantId}}",
+								"kyt",
+								"txns",
+								"-",
+								"data"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Crypto",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"txnId\": \"{{txnId}}\",\n  \"txnDate\": \"2025-04-04 13:50:00+0100\",\n  \"zoneId\": \"UTC+01:00\",\n  \"type\": \"finance\",\n  \"info\": {\n    \"direction\": \"out\",\n    \"amount\": 10,\n    \"currencyCode\": \"STG\",\n    \"currencyType\": \"crypto\",\n    \"paymentDetails\": \"InfoDetails\",\n    \"paymentTxnId\": \"txnHash\",\n    \"type\": \"customType\",\n    \"cryptoParams\": {\n      \"cryptoChain\": \"ETH\"\n    }\n  },\n  \"applicant\": {\n    \"type\": \"individual\",\n    \"fullName\": \"Users Fullname\",\n    \"placeOfBirth\": \"settlementName\",\n    \"dob\": \"1995-09-30\",\n    \"address\": {\n      \"country\": \"CAN\",\n      \"postCode\": \"123456\",\n      \"town\": \"usersAddressTown\",\n      \"state\": \"usersAddState\",\n      \"street\": \"usersAddSt\",\n      \"subStreet\": \"usersAddSbSt\",\n      \"flatNumber\": \"101\",\n      \"buildingNumber\": \"202\",\n      \"buildingName\": \"usersAddBuildName\",\n      \"formattedAddress\": \"postCode, town, state, street, buildingNumber\"\n    },\n    \"idDoc\": {\n      \"number\": \"FR42234089\",\n      \"idDocType\": \"PASSPORT\",\n      \"country\": \"FRA\",\n      \"registrationAuthority\": \"Ille-de-France 01\"\n    },\n    \"residenceCountry\": \"FRA\",\n    \"institutionInfo\": {\n      \"address\": {\n        \"country\": \"PRT\"\n      },\n      \"code\": \"BIC\",\n      \"name\": \"Wells Fargo\",\n      \"internalId\": \"vaspInternalId\"\n    },\n    \"paymentMethod\": {\n      \"type\": \"crypto\",\n      \"accountId\": \"XX00123456789012345678\",\n      \"issuingCountry\": \"CAN\"\n    },\n    \"device\": {\n      \"ipInfo\": {\n        \"lat\": 300,\n        \"lon\": 500,\n        \"ip\": \"178.123.68.138\",\n        \"countryCode3\": \"POL\"\n      },\n      \"userAgent\": \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/601.3.9 (KHTML, like Gecko) Version/9.0.2 Safari/601.3.9\",\n      \"sessionId\": \"r-v3-812412m9e12d42\",\n      \"sessionAgeMs\": 18,\n      \"acceptLang\": \"en\",\n      \"fingerprint\": \"usersDeviceFing\"\n    }\n  },\n  \"counterparty\": {\n    \"type\": \"individual\",\n    \"externalUserId\": \"cpExtId\",\n    \"fullName\": \"CP Name\",\n    \"placeOfBirth\": \"settlementName\",\n    \"dob\": \"1995-09-30\",\n    \"address\": {\n      \"country\": \"QAT\",\n      \"postCode\": \"987654\",\n      \"town\": \"cpTown\",\n      \"state\": \"cpState\",\n      \"street\": \"cpStreet\",\n      \"subStreet\": \"cpSubStreet\",\n      \"flatNumber\": \"303\",\n      \"buildingNumber\": \"404\",\n      \"buildingName\": \"cpBuildingName\",\n      \"formattedAddress\": \"postCode, town, state, street, buildingNumber\"\n    },\n    \"idDoc\": {\n      \"number\": \"DE42234089\",\n      \"idDocType\": \"PASSPORT\",\n      \"country\": \"DEU\",\n      \"registrationAuthority\": \"BerlinMitte\"\n    },\n    \"residenceCountry\": \"DEU\",\n    \"institutionInfo\": {\n      \"address\": {\n        \"country\": \"PAN\"\n      },\n      \"code\": \"BIC\",\n      \"name\": \"Wells Fargo\",\n      \"internalId\": \"vaspInternalId\"\n    },\n    \"paymentMethod\": {\n      \"type\": \"crypto\",\n      \"accountId\": \"cpWalletAddress\",\n      \"issuingCountry\": \"SVN\"\n    },\n    \"device\": {\n      \"ipInfo\": {\n        \"lat\": 600,\n        \"lon\": 700,\n        \"ip\": \"62.228.108.249\",\n        \"countryCode3\": \"SJM\"\n      },\n      \"userAgent\": \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/601.3.9 (KHTML, like Gecko) Version/9.0.2 Safari/601.3.9\",\n      \"sessionId\": \"r-v3-812412m9e12d42\",\n      \"sessionAgeMs\": 18,\n      \"acceptLang\": \"en\",\n      \"fingerprint\": \"cpDevFing\"\n    }\n  },\n  \"props\": {\n    \"customProperty\": \"Custom value\",\n    \"dailyOutLimit\": \"10000\"\n  }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{sumsub_root_url}}/resources/applicants/{{applicantId}}/kyt/txns/-/data",
+									"host": [
+										"{{sumsub_root_url}}"
+									],
+									"path": [
+										"resources",
+										"applicants",
+										"{{applicantId}}",
+										"kyt",
+										"txns",
+										"-",
+										"data"
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Fiat",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"txnId\": \"{{txnId}}\",\n  \"txnDate\": \"2025-04-04 13:50:00+0100\",\n  \"zoneId\": \"UTC+01:00\",\n  \"type\": \"finance\",\n  \"info\": {\n    \"direction\": \"in\",\n    \"mcc\": 5698,\n    \"amount\": 1000,\n    \"currencyCode\": \"EUR\",\n    \"currencyType\": \"fiat\",\n    \"paymentDetails\": \"InfoDetails\",\n    \"type\": \"CustomTxnType\"\n  },\n  \"applicant\": {\n    \"type\": \"individual\",\n    \"fullName\": \"Users Fullname\",\n    \"placeOfBirth\": \"settlementName\",\n    \"dob\": \"1995-09-30\",\n    \"address\": {\n      \"country\": \"CAN\",\n      \"postCode\": \"123456\",\n      \"town\": \"usersAddressTown\",\n      \"state\": \"usersAddState\",\n      \"street\": \"usersAddSt\",\n      \"subStreet\": \"usersAddSbSt\",\n      \"flatNumber\": \"101\",\n      \"buildingNumber\": \"202\",\n      \"buildingName\": \"usersAddBuildName\",\n      \"formattedAddress\": \"postCode, town, state, street, buildingNumber\"\n    },\n     \"idDoc\": {\n      \"number\": \"DE42234089\",\n      \"idDocType\": \"PASSPORT\",\n      \"country\": \"DEU\",\n      \"registrationAuthority\": \"BerlinMitte\"\n    },\n    \"residenceCountry\": \"DEU\",\n    \"institutionInfo\": {\n      \"address\": {\n        \"country\": \"PRT\"\n      },\n      \"code\": \"BIC\",\n      \"name\": \"Wells Fargo\"\n    },\n    \"paymentMethod\": {\n      \"type\": \"card\",\n      \"accountId\": \"XX00123456789012345678\",\n      \"issuingCountry\": \"CAN\"\n    },   \n    \"device\": {\n      \"ipInfo\": {\n        \"lat\": 300,\n        \"lon\": 500,\n        \"ip\": \"178.123.68.138\",\n        \"countryCode3\": \"POL\"\n      },\n      \"userAgent\": \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/601.3.9 (KHTML, like Gecko) Version/9.0.2 Safari/601.3.9\",\n      \"sessionId\": \"r-v3-812412m9e12d42\",\n      \"sessionAgeMs\": 18,\n      \"acceptLang\": \"en\",\n      \"fingerprint\": \"usersDeviceFing\"\n    }\n  },\n  \"counterparty\": {\n    \"type\": \"individual\",\n    \"externalUserId\": \"cpExtId\",\n    \"fullName\": \"CP Name\",\n    \"placeOfBirth\": \"settlementName\",\n    \"dob\": \"1995-09-30\",\n    \"address\": {\n      \"country\": \"QAT\",\n      \"postCode\": \"987654\",\n      \"town\": \"cpTown\",\n      \"state\": \"cpState\",\n      \"street\": \"cpStreet\",\n      \"subStreet\": \"cpSubStreet\",\n      \"flatNumber\": \"303\",\n      \"buildingNumber\": \"404\",\n      \"buildingName\": \"cpBuildingName\",\n      \"formattedAddress\": \"postCode, town, state, street, buildingNumber\"\n    },\n     \"idDoc\": {\n      \"number\": \"FR42234089\",\n      \"idDocType\": \"PASSPORT\",\n      \"country\": \"FRA\",\n      \"registrationAuthority\": \"Ille-de-France 01\"\n    },\n    \"residenceCountry\": \"FRA\",\n    \"institutionInfo\": {\n      \"address\": {\n        \"country\": \"PAN\"\n      },\n      \"code\": \"BIC\",\n      \"name\": \"Wells Fargo\"\n    },\n    \"paymentMethod\": {\n      \"type\": \"card\",\n      \"accountId\": \"cpPayAccId\",\n      \"issuingCountry\": \"SVN\"\n    },    \n    \"device\": {\n      \"ipInfo\": {\n        \"lat\": 600,\n        \"lon\": 700,\n        \"ip\": \"192.2.2\",\n        \"countryCode3\": \"SJM\"\n      },\n      \"userAgent\": \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/601.3.9 (KHTML, like Gecko) Version/9.0.2 Safari/601.3.9\",\n      \"sessionId\": \"r-v3-812412m9e12d42\",\n      \"sessionAgeMs\": 18,\n      \"acceptLang\": \"en\",\n      \"fingerprint\": \"cpDevFing\"\n    }\n  },\n  \"props\": {\n    \"customProperty\": \"Custom value\",\n    \"dailyOutLimit\": \"10000\"\n  }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{sumsub_root_url}}/resources/applicants/{{applicantId}}/kyt/txns/-/data",
+									"host": [
+										"{{sumsub_root_url}}"
+									],
+									"path": [
+										"resources",
+										"applicants",
+										"{{applicantId}}",
+										"kyt",
+										"txns",
+										"-",
+										"data"
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "User Platform Event",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"txnId\": \"{{txnId}}\",\n  \"txnDate\": \"2025-04-29 02:30:12+0000\",\n  \"type\": \"userPlatformEvent\",\n  \"applicant\": {\n    \"type\": \"individual\",\n    \"fullName\": \"Users Fullname\",\n    \"placeOfBirth\": \"settlementName\",\n    \"dob\": \"1995-09-30\",\n    \"address\": {\n      \"country\": \"CAN\",\n      \"postCode\": \"123456\",\n      \"town\": \"usersAddressTown\",\n      \"state\": \"usersAddState\",\n      \"street\": \"usersAddSt\",\n      \"subStreet\": \"usersAddSbSt\",\n      \"flatNumber\": \"101\",\n      \"buildingNumber\": \"202\",\n      \"buildingName\": \"usersAddBuildName\",\n      \"formattedAddress\": \"postCode, town, state, street, buildingNumber\"\n    },\n    \"device\": {\n      \"coords\": {\n        \"lat\": -1.7976931348623157,\n        \"lon\": \" 1.7976931348623157\",\n        \"accuracy\": \"10\"\n      },\n      \"ipInfo\": {\n        \"ip\": \"242.1.1\"\n      },\n      \"userAgent\": \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/601.3.9 (KHTML, like Gecko) Version/9.0.2 Safari/601.3.9\",\n      \"sessionId\": \"r-v3-812412m9e12d42\",\n      \"fingerprint\": \"usersDeviceFing\",\n      \"sessionAgeMs\": 18,\n      \"acceptLang\": \"en\"\n    }\n  },\n  \"userPlatformEventInfo\": {\n    \"type\": \"general\"\n  },\n  \"props\": {\n    \"customProperty\": \"Custom value\",\n    \"dailyOutLimit\": \"10000\"\n  }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{sumsub_root_url}}/resources/applicants/{{applicantId}}/kyt/txns/-/data",
+									"host": [
+										"{{sumsub_root_url}}"
+									],
+									"path": [
+										"resources",
+										"applicants",
+										"{{applicantId}}",
+										"kyt",
+										"txns",
+										"-",
+										"data"
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Submit transaction for non-existing applicant",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"txnId\": \"crypto0002\",\n  \"txnDate\": \"2025-04-04 13:50:00+0300\",\n  \"zoneId\": \"UTC+01:00\",\n  \"type\": \"finance\",\n  \"info\": {\n    \"direction\": \"out\",\n    \"amount\": 10,\n    \"currencyCode\": \"STG\",\n    \"currencyType\": \"crypto\",\n    \"paymentDetails\": \"InfoDetails\",\n    \"paymentTxnId\": \"txnHash\",\n    \"type\": \"customType\",\n    \"cryptoParams\": {\n      \"cryptoChain\": \"ETH\"\n    }\n  },\n  \"applicant\": {\n    \"type\": \"individual\",\n    \"externalUserId\": \"Crypto0002\",\n    \"fullName\": \"Users Fullname\",\n    \"placeOfBirth\": \"settlementName\",\n    \"dob\": \"1995-09-30\",\n    \"address\": {\n      \"country\": \"CAN\",\n      \"postCode\": \"123456\",\n      \"town\": \"usersAddressTown\",\n      \"state\": \"usersAddState\",\n      \"street\": \"usersAddSt\",\n      \"subStreet\": \"usersAddSbSt\",\n      \"flatNumber\": \"101\",\n      \"buildingNumber\": \"202\",\n      \"buildingName\": \"usersAddBuildName\",\n      \"formattedAddress\": \"postCode, town, state, street, buildingNumber\"\n    },\n    \"institutionInfo\": {\n      \"address\": {\n        \"country\": \"PRT\"\n      },\n      \"code\": \"BIC\",\n      \"name\": \"Wells Fargo\",\n      \"internalId\": \"vaspInternalId\"\n    },\n    \"paymentMethod\": {\n      \"type\": \"crypto\",\n      \"accountId\": \"XX00123456789012345678\",\n      \"issuingCountry\": \"CAN\"\n    },\n    \"device\": {\n      \"ipInfo\": {\n        \"lat\": 300,\n        \"lon\": 500,\n        \"ip\": \"178.123.68.138\",\n        \"countryCode3\": \"POL\"\n      },\n      \"userAgent\": \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/601.3.9 (KHTML, like Gecko) Version/9.0.2 Safari/601.3.9\",\n      \"sessionId\": \"r-v3-812412m9e12d42\",\n      \"sessionAgeMs\": 18,\n      \"acceptLang\": \"en\",\n      \"fingerprint\": \"usersDeviceFing\"\n    }\n  },\n  \"counterparty\": {\n    \"type\": \"individual\",\n    \"externalUserId\": \"cpExtId\",\n    \"fullName\": \"CP Name\",\n    \"placeOfBirth\": \"settlementName\",\n    \"dob\": \"1995-09-30\",\n    \"address\": {\n      \"country\": \"QAT\",\n      \"postCode\": \"987654\",\n      \"town\": \"cpTown\",\n      \"state\": \"cpState\",\n      \"street\": \"cpStreet\",\n      \"subStreet\": \"cpSubStreet\",\n      \"flatNumber\": \"303\",\n      \"buildingNumber\": \"404\",\n      \"buildingName\": \"cpBuildingName\",\n      \"formattedAddress\": \"postCode, town, state, street, buildingNumber\"\n    },\n    \"institutionInfo\": {\n      \"address\": {\n        \"country\": \"PAN\"\n      },\n      \"code\": \"BIC\",\n      \"name\": \"Wells Fargo\",\n      \"internalId\": \"vaspInternalId\"\n    },\n    \"paymentMethod\": {\n      \"type\": \"crypto\",\n      \"accountId\": \"cpWalletAddress\",\n      \"issuingCountry\": \"SVN\"\n    },\n    \"device\": {\n      \"ipInfo\": {\n        \"lat\": 600,\n        \"lon\": 700,\n        \"ip\": \"62.228.108.249\",\n        \"countryCode3\": \"SJM\"\n      },\n      \"userAgent\": \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/601.3.9 (KHTML, like Gecko) Version/9.0.2 Safari/601.3.9\",\n      \"sessionId\": \"r-v3-812412m9e12d42\",\n      \"sessionAgeMs\": 18,\n      \"acceptLang\": \"en\",\n      \"fingerprint\": \"cpDevFing\"\n    }\n  },\n  \"props\": {\n    \"customProperty\": \"Custom value\",\n    \"dailyOutLimit\": \"10000\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{sumsub_root_url}}/resources/applicants/-/kyt/txns/-/data",
+							"host": [
+								"{{sumsub_root_url}}"
+							],
+							"path": [
+								"resources",
+								"applicants",
+								"-",
+								"kyt",
+								"txns",
+								"-",
+								"data"
+							],
+							"query": [
+								{
+									"key": "levelName",
+									"value": "{{levelName}}",
+									"disabled": true
+								},
+								{
+									"key": "accessToken",
+									"value": "{{accessToken}}",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Crypto",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"txnId\": \"{{txnId}}\",\n  \"txnDate\": \"2025-04-04 13:50:00+0100\",\n  \"zoneId\": \"UTC+01:00\",\n  \"type\": \"finance\",\n  \"info\": {\n    \"direction\": \"out\",\n    \"amount\": 10,\n    \"currencyCode\": \"STG\",\n    \"currencyType\": \"crypto\",\n    \"paymentDetails\": \"InfoDetails\",\n    \"paymentTxnId\": \"txnHash\",\n    \"type\": \"customType\",\n    \"cryptoParams\": {\n      \"cryptoChain\": \"ETH\"\n    }\n  },\n  \"applicant\": {\n    \"type\": \"individual\",\n    \"externalUserId\": \"{{externalUserId}}\",\n    \"fullName\": \"Users Fullname\",\n    \"placeOfBirth\": \"settlementName\",\n    \"dob\": \"1995-09-30\",\n    \"address\": {\n      \"country\": \"CAN\",\n      \"postCode\": \"123456\",\n      \"town\": \"usersAddressTown\",\n      \"state\": \"usersAddState\",\n      \"street\": \"usersAddSt\",\n      \"subStreet\": \"usersAddSbSt\",\n      \"flatNumber\": \"101\",\n      \"buildingNumber\": \"202\",\n      \"buildingName\": \"usersAddBuildName\",\n      \"formattedAddress\": \"postCode, town, state, street, buildingNumber\"\n    },\n    \"idDoc\": {\n      \"number\": \"FR42234089\",\n      \"idDocType\": \"PASSPORT\",\n      \"country\": \"FRA\",\n      \"registrationAuthority\": \"Ille-de-France 01\"\n    },\n    \"residenceCountry\": \"FRA\",\n    \"institutionInfo\": {\n      \"address\": {\n        \"country\": \"PRT\"\n      },\n      \"code\": \"BIC\",\n      \"name\": \"Wells Fargo\",\n      \"internalId\": \"vaspInternalId\"\n    },\n    \"paymentMethod\": {\n      \"type\": \"crypto\",\n      \"accountId\": \"XX00123456789012345678\",\n      \"issuingCountry\": \"CAN\"\n    },\n    \"device\": {\n      \"ipInfo\": {\n        \"lat\": 300,\n        \"lon\": 500,\n        \"ip\": \"178.123.68.138\",\n        \"countryCode3\": \"POL\"\n      },\n      \"userAgent\": \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/601.3.9 (KHTML, like Gecko) Version/9.0.2 Safari/601.3.9\",\n      \"sessionId\": \"r-v3-812412m9e12d42\",\n      \"sessionAgeMs\": 18,\n      \"acceptLang\": \"en\",\n      \"fingerprint\": \"usersDeviceFing\"\n    }\n  },\n  \"counterparty\": {\n    \"type\": \"individual\",\n    \"externalUserId\": \"cpExtId\",\n    \"fullName\": \"CP Name\",\n    \"placeOfBirth\": \"settlementName\",\n    \"dob\": \"1995-09-30\",\n    \"address\": {\n      \"country\": \"QAT\",\n      \"postCode\": \"987654\",\n      \"town\": \"cpTown\",\n      \"state\": \"cpState\",\n      \"street\": \"cpStreet\",\n      \"subStreet\": \"cpSubStreet\",\n      \"flatNumber\": \"303\",\n      \"buildingNumber\": \"404\",\n      \"buildingName\": \"cpBuildingName\",\n      \"formattedAddress\": \"postCode, town, state, street, buildingNumber\"\n    },\n    \"idDoc\": {\n      \"number\": \"DE42234089\",\n      \"idDocType\": \"PASSPORT\",\n      \"country\": \"DEU\",\n      \"registrationAuthority\": \"BerlinMitte\"\n    },\n    \"residenceCountry\": \"DEU\",\n    \"institutionInfo\": {\n      \"address\": {\n        \"country\": \"PAN\"\n      },\n      \"code\": \"BIC\",\n      \"name\": \"Wells Fargo\",\n      \"internalId\": \"vaspInternalId\"\n    },\n    \"paymentMethod\": {\n      \"type\": \"crypto\",\n      \"accountId\": \"cpWalletAddress\",\n      \"issuingCountry\": \"SVN\"\n    },\n    \"device\": {\n      \"ipInfo\": {\n        \"lat\": 600,\n        \"lon\": 700,\n        \"ip\": \"62.228.108.249\",\n        \"countryCode3\": \"SJM\"\n      },\n      \"userAgent\": \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/601.3.9 (KHTML, like Gecko) Version/9.0.2 Safari/601.3.9\",\n      \"sessionId\": \"r-v3-812412m9e12d42\",\n      \"sessionAgeMs\": 18,\n      \"acceptLang\": \"en\",\n      \"fingerprint\": \"cpDevFing\"\n    }\n  },\n  \"props\": {\n    \"customProperty\": \"Custom value\",\n    \"dailyOutLimit\": \"10000\"\n  }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{sumsub_root_url}}/resources/applicants/-/kyt/txns/-/data",
+									"host": [
+										"{{sumsub_root_url}}"
+									],
+									"path": [
+										"resources",
+										"applicants",
+										"-",
+										"kyt",
+										"txns",
+										"-",
+										"data"
+									],
+									"query": [
+										{
+											"key": "levelName",
+											"value": "{{levelName}}",
+											"disabled": true
+										},
+										{
+											"key": "accessToken",
+											"value": "{{accessToken}}",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Fiat",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"txnId\": \"{{txnId}}\",\n  \"txnDate\": \"2025-04-04 13:50:00+0100\",\n  \"zoneId\": \"UTC+01:00\",\n  \"type\": \"finance\",\n  \"info\": {\n    \"direction\": \"in\",\n    \"mcc\": 5698,\n    \"amount\": 1000,\n    \"currencyCode\": \"EUR\",\n    \"currencyType\": \"fiat\",\n    \"paymentDetails\": \"InfoDetails\",\n    \"type\": \"CustomTxnType\"\n  },\n  \"applicant\": {\n    \"type\": \"individual\",\n    \"externalUserId\": \"{{externalUserId}}\",\n    \"fullName\": \"Users Fullname\",\n    \"placeOfBirth\": \"settlementName\",\n    \"dob\": \"1995-09-30\",\n    \"address\": {\n      \"country\": \"CAN\",\n      \"postCode\": \"123456\",\n      \"town\": \"usersAddressTown\",\n      \"state\": \"usersAddState\",\n      \"street\": \"usersAddSt\",\n      \"subStreet\": \"usersAddSbSt\",\n      \"flatNumber\": \"101\",\n      \"buildingNumber\": \"202\",\n      \"buildingName\": \"usersAddBuildName\",\n      \"formattedAddress\": \"postCode, town, state, street, buildingNumber\"\n    },\n     \"idDoc\": {\n      \"number\": \"DE42234089\",\n      \"idDocType\": \"PASSPORT\",\n      \"country\": \"DEU\",\n      \"registrationAuthority\": \"BerlinMitte\"\n    },\n    \"residenceCountry\": \"DEU\",\n    \"institutionInfo\": {\n      \"address\": {\n        \"country\": \"PRT\"\n      },\n      \"code\": \"BIC\",\n      \"name\": \"Wells Fargo\"\n    },\n    \"paymentMethod\": {\n      \"type\": \"card\",\n      \"accountId\": \"XX00123456789012345678\",\n      \"issuingCountry\": \"CAN\"\n    },   \n    \"device\": {\n      \"ipInfo\": {\n        \"lat\": 300,\n        \"lon\": 500,\n        \"ip\": \"178.123.68.138\",\n        \"countryCode3\": \"POL\"\n      },\n      \"userAgent\": \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/601.3.9 (KHTML, like Gecko) Version/9.0.2 Safari/601.3.9\",\n      \"sessionId\": \"r-v3-812412m9e12d42\",\n      \"sessionAgeMs\": 18,\n      \"acceptLang\": \"en\",\n      \"fingerprint\": \"usersDeviceFing\"\n    }\n  },\n  \"counterparty\": {\n    \"type\": \"individual\",\n    \"externalUserId\": \"cpExtId\",\n    \"fullName\": \"CP Name\",\n    \"placeOfBirth\": \"settlementName\",\n    \"dob\": \"1995-09-30\",\n    \"address\": {\n      \"country\": \"QAT\",\n      \"postCode\": \"987654\",\n      \"town\": \"cpTown\",\n      \"state\": \"cpState\",\n      \"street\": \"cpStreet\",\n      \"subStreet\": \"cpSubStreet\",\n      \"flatNumber\": \"303\",\n      \"buildingNumber\": \"404\",\n      \"buildingName\": \"cpBuildingName\",\n      \"formattedAddress\": \"postCode, town, state, street, buildingNumber\"\n    },\n     \"idDoc\": {\n      \"number\": \"FR42234089\",\n      \"idDocType\": \"PASSPORT\",\n      \"country\": \"FRA\",\n      \"registrationAuthority\": \"Ille-de-France 01\"\n    },\n    \"residenceCountry\": \"FRA\",\n    \"institutionInfo\": {\n      \"address\": {\n        \"country\": \"PAN\"\n      },\n      \"code\": \"BIC\",\n      \"name\": \"Wells Fargo\"\n    },\n    \"paymentMethod\": {\n      \"type\": \"card\",\n      \"accountId\": \"cpPayAccId\",\n      \"issuingCountry\": \"SVN\"\n    },    \n    \"device\": {\n      \"ipInfo\": {\n        \"lat\": 600,\n        \"lon\": 700,\n        \"ip\": \"192.2.2\",\n        \"countryCode3\": \"SJM\"\n      },\n      \"userAgent\": \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/601.3.9 (KHTML, like Gecko) Version/9.0.2 Safari/601.3.9\",\n      \"sessionId\": \"r-v3-812412m9e12d42\",\n      \"sessionAgeMs\": 18,\n      \"acceptLang\": \"en\",\n      \"fingerprint\": \"cpDevFing\"\n    }\n  },\n  \"props\": {\n    \"customProperty\": \"Custom value\",\n    \"dailyOutLimit\": \"10000\"\n  }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{sumsub_root_url}}/resources/applicants/-/kyt/txns/-/data",
+									"host": [
+										"{{sumsub_root_url}}"
+									],
+									"path": [
+										"resources",
+										"applicants",
+										"-",
+										"kyt",
+										"txns",
+										"-",
+										"data"
+									],
+									"query": [
+										{
+											"key": "levelName",
+											"value": "{{levelName}}",
+											"disabled": true
+										},
+										{
+											"key": "accessToken",
+											"value": "{{accessToken}}",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "User Platform Event",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"txnId\": \"{{txnId}}\",\n  \"txnDate\": \"2025-04-29 02:30:12+0000\",\n  \"type\": \"userPlatformEvent\",\n  \"applicant\": {\n    \"type\": \"individual\",\n    \"externalUserId\": \"{{externalUserId}}\",\n    \"fullName\": \"Users Fullname\",\n    \"placeOfBirth\": \"settlementName\",\n    \"dob\": \"1995-09-30\",\n    \"address\": {\n      \"country\": \"CAN\",\n      \"postCode\": \"123456\",\n      \"town\": \"usersAddressTown\",\n      \"state\": \"usersAddState\",\n      \"street\": \"usersAddSt\",\n      \"subStreet\": \"usersAddSbSt\",\n      \"flatNumber\": \"101\",\n      \"buildingNumber\": \"202\",\n      \"buildingName\": \"usersAddBuildName\",\n      \"formattedAddress\": \"postCode, town, state, street, buildingNumber\"\n    },\n    \"device\": {\n      \"coords\": {\n        \"lat\": -1.7976931348623157,\n        \"lon\": \" 1.7976931348623157\",\n        \"accuracy\": \"10\"\n      },\n      \"ipInfo\": {\n        \"ip\": \"242.1.1\"\n      },\n      \"userAgent\": \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/601.3.9 (KHTML, like Gecko) Version/9.0.2 Safari/601.3.9\",\n      \"sessionId\": \"r-v3-812412m9e12d42\",\n      \"fingerprint\": \"usersDeviceFing\",\n      \"sessionAgeMs\": 18,\n      \"acceptLang\": \"en\"\n    }\n  },\n  \"userPlatformEventInfo\": {\n    \"type\": \"general\"\n  },\n  \"props\": {\n    \"customProperty\": \"Custom value\",\n    \"dailyOutLimit\": \"10000\"\n  }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{sumsub_root_url}}/resources/applicants/-/kyt/txns/-/data",
+									"host": [
+										"{{sumsub_root_url}}"
+									],
+									"path": [
+										"resources",
+										"applicants",
+										"-",
+										"kyt",
+										"txns",
+										"-",
+										"data"
+									],
+									"query": [
+										{
+											"key": "levelName",
+											"value": "{{levelName}}",
+											"disabled": true
+										},
+										{
+											"key": "accessToken",
+											"value": "{{accessToken}}",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Bulk transaction import",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-ndjson",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"applicantId\":\"{{applicantId}}\",\"data\":{\"txnId\": \"{{txnId}}_1\",\"txnDate\": \"2025-04-04 13:50:00+0100\",\"zoneId\": \"UTC+01:00\",\"type\": \"finance\",\"info\": {\"direction\": \"in\",\"amount\": 10,\"currencyCode\": \"STG\",\"currencyType\": \"crypto\",\"paymentDetails\": \"InfoDetails\",\"paymentTxnId\": \"txnHash\",\"type\": \"customType\",\"cryptoParams\": {\"cryptoChain\": \"ETH\"}},\"applicant\": {\"type\": \"individual\",\"fullName\": \"Users Fullname\",\"placeOfBirth\": \"settlementName\",\"dob\": \"1995-09-30\",\"address\": {\"country\": \"CAN\",\"postCode\": \"123456\",\"town\": \"usersAddressTown\",\"state\": \"usersAddState\",\"street\": \"usersAddSt\",\"subStreet\": \"usersAddSbSt\",\"flatNumber\": \"101\",\"buildingNumber\": \"202\",\"buildingName\": \"usersAddBuildName\",\"formattedAddress\": \"postCode, town, state, street, buildingNumber\"},\"institutionInfo\": {\"address\": {\"country\": \"PRT\"},\"code\": \"BIC\",\"name\": \"Wells Fargo\",\"internalId\": \"vaspInternalId\"},\"paymentMethod\": {\"type\": \"crypto\",\"accountId\": \"XX00123456789012345678\",\"issuingCountry\": \"CAN\"},\"device\": {\"ipInfo\": {\"lat\": 300,\"lon\": 500,\"ip\": \"178.123.68.138\",\"countryCode3\": \"POL\"},\"userAgent\": \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/601.3.9 (KHTML, like Gecko) Version/9.0.2 Safari/601.3.9\",\"sessionId\": \"r-v3-812412m9e12d42\",\"sessionAgeMs\": 18,\"acceptLang\": \"en\",\"fingerprint\": \"usersDeviceFing\"}},\"counterparty\": {\"type\": \"individual\",\"externalUserId\": \"cpExtId\",\"fullName\": \"CP Name\", \"placeOfBirth\": \"settlementName\",\"dob\": \"1995-09-30\",\"address\": {\"country\": \"QAT\",\"postCode\": \"987654\",\"town\": \"cpTown\",\"state\": \"cpState\",\"street\": \"cpStreet\",\"subStreet\": \"cpSubStreet\",\"flatNumber\": \"303\",\"buildingNumber\": \"404\",\"buildingName\": \"cpBuildingName\",\"formattedAddress\": \"postCode, town, state, street, buildingNumber\"},\"institutionInfo\": {\"address\": {\"country\": \"PAN\"},\"code\": \"BIC\",\"name\": \"Wells Fargo\",\"internalId\": \"vaspInternalId\"},\"paymentMethod\": {\"type\": \"crypto\",\"accountId\": \"cpWalletAddress\",\"issuingCountry\": \"SVN\"}, \"device\": {\"ipInfo\": {\"lat\": 600,\"lon\": 700,\"ip\": \"62.228.108.249\",\"countryCode3\": \"SJM\"},\"userAgent\": \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/601.3.9 (KHTML, like Gecko) Version/9.0.2 Safari/601.3.9\",\"sessionId\": \"r-v3-812412m9e12d42\",\"sessionAgeMs\": 18,\"acceptLang\": \"en\",\"fingerprint\": \"cpDevFing\"}},\"props\": {\"customProperty\": \"Custom value\",\"dailyOutLimit\": \"10000\"}}}\n{\"data\":{\"txnId\": \"{{txnId}}_2\",\"zoneId\": \"UTC+01:00\",\"type\": \"finance\",\"info\": {\"type\": \"withdrawal\",\"direction\": \"out\",\"amount\": 2,\"currencyCode\": \"BTC\",\"currencyType\": \"crypto\",\"amountInDefaultCurrency\": 95238.09523809524,\"defaultCurrencyCode\": \"EUR\",\"paymentDetails\": \"Birthday Present\"},\"applicant\": {\"type\": \"individual\",\"externalUserId\": \"{{externalUserId}}_2\",\"fullName\": \"John Smith\",\"placeOfBirth\": \"settlementName\",\"dob\": \"1995-09-30\",\"paymentMethod\": {\"type\": \"crypto\"}},\"counterparty\": {\"type\": \"individual\",\"externalUserId\": \"peanbpa9x4bgptzkrzr3qt\",\"fullName\": \"Jack Posek\",\"placeOfBirth\": \"settlementName\",\"dob\": \"1995-09-30\",\"paymentMethod\": {\"type\": \"crypto\",\"accountId\": \"1EM4e8eu2S2RQrbS8C6aYnunWpkAwQ8GtG\"}},\"props\": {\"customProperty\": \"Custom value\",\"dailyOutLimit\": \"10000\"}}}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{sumsub_root_url}}/resources/kyt/misc/txns/import?ignoreErrors={{ignoreErrors}}&scoreSavedTxns={{scoreSavedTxns}}",
+							"host": [
+								"{{sumsub_root_url}}"
+							],
+							"path": [
+								"resources",
+								"kyt",
+								"misc",
+								"txns",
+								"import"
+							],
+							"query": [
+								{
+									"key": "ignoreErrors",
+									"value": "{{ignoreErrors}}"
+								},
+								{
+									"key": "scoreSavedTxns",
+									"value": "{{scoreSavedTxns}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Approve or reject transaction",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"reviewAnswer\": \"GREEN\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{sumsub_root_url}}/resources/kyt/txns/{{id}}/review/status/completed",
+							"host": [
+								"{{sumsub_root_url}}"
+							],
+							"path": [
+								"resources",
+								"kyt",
+								"txns",
+								"{{id}}",
+								"review",
+								"status",
+								"completed"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change transaction properties",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"dailyOutLimit\": \"30000\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{sumsub_root_url}}/resources/kyt/txns/{{id}}/props?unsetKey={{unsetKey}}",
+							"host": [
+								"{{sumsub_root_url}}"
+							],
+							"path": [
+								"resources",
+								"kyt",
+								"txns",
+								"{{id}}",
+								"props"
+							],
+							"query": [
+								{
+									"key": "unsetKey",
+									"value": "{{unsetKey}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Rescore transaction",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{sumsub_root_url}}/resources/kyt/txns/{{id}}/-/score",
+							"host": [
+								"{{sumsub_root_url}}"
+							],
+							"path": [
+								"resources",
+								"kyt",
+								"txns",
+								"{{id}}",
+								"-",
+								"score"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get transaction information",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{sumsub_root_url}}/resources/kyt/txns/{{id}}/one",
+							"host": [
+								"{{sumsub_root_url}}"
+							],
+							"path": [
+								"resources",
+								"kyt",
+								"txns",
+								"{{id}}",
+								"one"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get transaction information by `txnId`",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{sumsub_root_url}}/resources/kyt/txns/-;data.txnId={{txnId}}/one",
+							"host": [
+								"{{sumsub_root_url}}"
+							],
+							"path": [
+								"resources",
+								"kyt",
+								"txns",
+								"-;data.txnId={{txnId}}",
+								"one"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find specific transactions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{sumsub_root_url}}/resources/kyt/txns/query/-;data.type=finance?limit={{limit}}&order={{order}}",
+							"host": [
+								"{{sumsub_root_url}}"
+							],
+							"path": [
+								"resources",
+								"kyt",
+								"txns",
+								"query",
+								"-;data.type=finance"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "{{limit}}"
+								},
+								{
+									"key": "order",
+									"value": "{{order}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get available currencies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{sumsub_root_url}}/resources/kyt/currency?type={{type}}",
+							"host": [
+								"{{sumsub_root_url}}"
+							],
+							"path": [
+								"resources",
+								"kyt",
+								"currency"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "{{type}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add payment method",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"data\": {\n    \"type\": \"bankAccount\",\n    \"accountIdentifier\": \"XX00123456789012345678\"\n  },\n  \"institutionInfo\": {\n    \"code\": \"BIC\",\n    \"name\": \"Wells Fargo\"\n  },\n  \"externalId\": \"pmExtId\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{sumsub_root_url}}/resources/applicants/{{applicantId}}/payments",
+							"host": [
+								"{{sumsub_root_url}}"
+							],
+							"path": [
+								"resources",
+								"applicants",
+								"{{applicantId}}",
+								"payments"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Travel Rule",
+			"item": [
+				{
+					"name": "Submit transaction",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"txnId\": \"{{txnId}}\",\n  \"type\": \"travelRule\",\n  \"applicant\": {\n    \"type\": \"individual\",\n    \"nameType\": \"birthName\",\n    \"dob\": \"1992-05-08\",\n    \"placeOfBirth\": \"Paris, France\",\n    \"address\": {\n      \"country\": \"FRA\",\n      \"town\": \"Paris\",\n      \"postCode\": \"75001\",\n      \"street\": \"Rue de Rivoli\",\n      \"subStreet\": \"1\"\n    },\n    \"idDoc\": {\n      \"number\": \"FR42234089\",\n      \"country\": \"FRA\",\n      \"idDocType\": \"PASSPORT\",\n      \"registrationAuthority\": \"Ille-de-France 01\"\n    },\n    \"residenceCountry\": \"FRA\",\n    \"paymentMethod\": {\n      \"type\": \"account\",\n      \"accountId\": \"1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa\"\n    },\n    \"device\": {\n      \"fingerprint\": \"fg669ym2yxt\",\n      \"ipInfo\": {\n        \"ip\": \"87.141.63.130\",\n        \"countryCode3\": \"DEU\",\n        \"city\": \"Berlin\",\n        \"lat\": 52.5583,\n        \"lon\": 13.3826,\n        \"riskyAsn\": false\n      },\n      \"userAgentInfo\": {\n        \"userAgent\": \"Mozilla/5.0 (Macintosh; Intel Mac OS X x.y; rv:42.0) Gecko/20100101 Firefox/42.0\"\n      }\n    },\n    \"institutionInfo\": {},\n    \"firstName\": \"Billing\",\n    \"lastName\": \"Dollars\"\n  },\n  \"counterparty\": {\n    \"externalUserId\": \"tfcat5r9eyfjsuc7xge3q\",\n    \"firstName\": \"Jack\",\n    \"lastName\": \"Posek\",\n    \"nameType\": \"birthName\",\n    \"type\": \"individual\",\n    \"dob\": \"1991-04-07\",\n    \"placeOfBirth\": \"Berlin, Germany\",\n    \"address\": {\n      \"country\": \"DEU\",\n      \"town\": \"Berlin\",\n      \"postCode\": \"10115\",\n      \"street\": \"Chauseestr.\",\n      \"subStreet\": \"60\"\n    },\n    \"idDoc\": {\n      \"number\": \"DE42234089\",\n      \"country\": \"DEU\",\n      \"idDocType\": \"PASSPORT\",\n      \"registrationAuthority\": \"BerlinMitte\"\n    },\n    \"residenceCountry\": \"DEU\",\n    \"paymentMethod\": {\n      \"type\": \"\",\n      \"accountId\": \"bc1q080rkmk3kj86pxvf5nkxecdrw6nrx3zzy9xl7q\"\n    },\n    \"institutionInfo\": {}\n  },\n  \"info\": {\n    \"direction\": \"out\",\n    \"amount\": 0.01,\n    \"currencyCode\": \"BTC\",\n    \"type\": \"ExampleCategory\"\n  },\n  \"props\": {\n    \"customProperty\": \"Custom value that can be used in rules\",\n    \"dailyOutLimit\": \"10000\"\n  },\n  \"txnDate\": \"2025-03-04 16:39:31+0000\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{sumsub_root_url}}/resources/applicants/{{applicantId}}/kyt/txns/-/data",
+							"host": [
+								"{{sumsub_root_url}}"
+							],
+							"path": [
+								"resources",
+								"applicants",
+								"{{applicantId}}",
+								"kyt",
+								"txns",
+								"-",
+								"data"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Submit transaction for non-existing applicant",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"txnId\": \"{{txnId}}\",\n  \"type\": \"travelRule\",\n  \"applicant\": {\n    \"type\": \"company\",\n    \"externalUserId\": \"{{externalUserId}}\",\n    \"nameType\": \"legalName\",\n    \"leiCode\": \"leiCode\",\n    \"companyType\": \"partnership\",\n    \"address\": {\n      \"country\": \"FRA\",\n      \"town\": \"Paris\",\n      \"postCode\": \"75001\",\n      \"street\": \"Rue de Rivoli\",\n      \"subStreet\": \"1\"\n    },\n    \"licenseNumber\": \"licenseNumber\",\n    \"ceo\": {\n      \"firstName\": \"ceoFirstName\",\n      \"lastName\": \"ceoLastName\",\n      \"nameType\": \"legalName\"\n    },\n    \"paymentMethod\": {\n      \"type\": \"account\",\n      \"accountId\": \"1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa\"\n    },\n    \"device\": {\n      \"fingerprint\": \"uxgmterrvus\",\n      \"ipInfo\": {\n        \"ip\": \"87.141.63.130\",\n        \"countryCode3\": \"DEU\",\n        \"city\": \"Berlin\",\n        \"lat\": 52.5583,\n        \"lon\": 13.3826,\n        \"riskyAsn\": false\n      },\n      \"userAgentInfo\": {\n        \"userAgent\": \"Mozilla/5.0 (Macintosh; Intel Mac OS X x.y; rv:42.0) Gecko/20100101 Firefox/42.0\"\n      }\n    },\n    \"institutionInfo\": {},\n    \"firstName\": \"\",\n    \"lastName\": \"\"\n  },\n  \"counterparty\": {\n    \"externalUserId\": \"ckjjlcws59gxprzaqaxodp\",\n    \"fullName\": \"Company\",\n    \"leiCode\": \"leiCode\",\n    \"nameType\": \"legalName\",\n    \"type\": \"company\",\n    \"companyType\": \"corporation\",\n    \"licenseNumber\": \"licenseNumber\",\n    \"address\": {\n      \"country\": \"DEU\",\n      \"town\": \"Berlin\",\n      \"postCode\": \"10115\",\n      \"street\": \"Chauseestr.\",\n      \"subStreet\": \"60\"\n    },\n    \"ceo\": {\n      \"firstName\": \"ceoFirstName\",\n      \"lastName\": \"ceoLastName\",\n      \"nameType\": \"legalName\"\n    },\n    \"paymentMethod\": {\n      \"type\": \"crypto\",\n      \"accountId\": \"bc1q080rkmk3kj86pxvf5nkxecdrw6nrx3zzy9xl7q\"\n    },\n    \"institutionInfo\": {}\n  },\n  \"info\": {\n    \"direction\": \"out\",\n    \"amount\": 0.01,\n    \"currencyCode\": \"BTC\",\n    \"type\": \"crypto\"\n  }\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{sumsub_root_url}}/resources/applicants/-/kyt/txns/-/data",
+							"host": [
+								"{{sumsub_root_url}}"
+							],
+							"path": [
+								"resources",
+								"applicants",
+								"-",
+								"kyt",
+								"txns",
+								"-",
+								"data"
+							],
+							"query": [
+								{
+									"key": "levelName",
+									"value": "{{levelName}}",
+									"disabled": true
+								},
+								{
+									"key": "accessToken",
+									"value": "{{accessToken}}",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Initiate SDK for Travel Rule transaction",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": \"{{userId}}\",\n    \"txnInfo\": {\n        \"applicantWalletAddress\": \"0x611Fb08528080848Dd3439242fdfg993d18ADd95dsd\",\n        \"counterpartyWalletAddress\": \"0x611Fb08528080848Dd3439242fdfg993d18ADd95dsd\",\n        \"amount\": 10,\n        \"currencyCode\": \"ETH\",\n        \"cryptoChain\": \"\",\n        \"direction\": \"out\"\n    },\n    \"ttlInSecs\": \"1800\",\n    \"levelName\": \"travel-rule-sdk\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{sumsub_root_url}}/resources/tr/sdk/init",
+							"host": [
+								"{{sumsub_root_url}}"
+							],
+							"path": [
+								"resources",
+								"tr",
+								"sdk",
+								"init"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch transaction with chain transaction ID",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"paymentTxnId\": \"3213654zdrgsetrr51435ergh453t5z43rb\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{sumsub_root_url}}/resources/kyt/txns/{{id}}/data/info",
+							"host": [
+								"{{sumsub_root_url}}"
+							],
+							"path": [
+								"resources",
+								"kyt",
+								"txns",
+								"{{id}}",
+								"data",
+								"info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Confirm or reject transaction ownership",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{sumsub_root_url}}/resources/kyt/txns/{{id}}/ownership/{{ownershipStatus}}",
+							"host": [
+								"{{sumsub_root_url}}"
+							],
+							"path": [
+								"resources",
+								"kyt",
+								"txns",
+								"{{id}}",
+								"ownership",
+								"{{ownershipStatus}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Confirm wallet ownership",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \n    \"applicantId\": \"{{applicantId}}\" \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{sumsub_root_url}}/resources/kyt/txns/{{id}}/travelRuleOwnership",
+							"host": [
+								"{{sumsub_root_url}}"
+							],
+							"path": [
+								"resources",
+								"kyt",
+								"txns",
+								"{{id}}",
+								"travelRuleOwnership"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Known applicantId",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \n    \"applicantId\": \"{{applicantId}}\" \n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{sumsub_root_url}}/resources/kyt/txns/{{id}}/travelRuleOwnership",
+									"host": [
+										"{{sumsub_root_url}}"
+									],
+									"path": [
+										"resources",
+										"kyt",
+										"txns",
+										"{{id}}",
+										"travelRuleOwnership"
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Unknown applicantId",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"applicantParticipant\": {\n        \"fullName\": \"John Doe\",\n        \"externalUserId\": \"{{externalUserId}}\",\n        \"type\": \"individual\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{sumsub_root_url}}/resources/kyt/txns/{{id}}/travelRuleOwnership",
+									"host": [
+										"{{sumsub_root_url}}"
+									],
+									"path": [
+										"resources",
+										"kyt",
+										"txns",
+										"{{id}}",
+										"travelRuleOwnership"
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Import wallet addresses",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"walletAddress\": \"1njrRcKQtfjjLuQ\",\n        \"asset\": \"USDT\",\n        \"chain\": \"ETH\"\n    },\n    {\n        \"walletAddressHash\": \"04c4926a21184665ef890493cd3c67a919f868724fc44adb933b911234567890\",\n        \"asset\": \"USDT\",\n        \"chain\": \"ETH\"\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{sumsub_root_url}}/resources/kyt/walletAddress/import",
+							"host": [
+								"{{sumsub_root_url}}"
+							],
+							"path": [
+								"resources",
+								"kyt",
+								"walletAddress",
+								"import"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update wallet address",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"walletAddress\": \"3213654zdrgsetrr51435ergh453t5z4239\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{sumsub_root_url}}/resources/kyt/txns/{{id}}/applicantWalletAddress",
+							"host": [
+								"{{sumsub_root_url}}"
+							],
+							"path": [
+								"resources",
+								"kyt",
+								"txns",
+								"{{id}}",
+								"applicantWalletAddress"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get available VASPs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{sumsub_root_url}}/resources/vasps/-?limit={{limit}}&offset={{offset}}",
+							"host": [
+								"{{sumsub_root_url}}"
+							],
+							"path": [
+								"resources",
+								"vasps",
+								"-"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "{{limit}}"
+								},
+								{
+									"key": "offset",
+									"value": "{{offset}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"var secretKey = pm.variables.get(\"secret-key\");",
+					"var stamp = Math.floor(Date.now() / 1000).toString();",
+					"var valueToSign = stamp + pm.request.method.toUpperCase() + pm.request.url.toString();",
+					"",
+					"if (pm.request.body.formdata) {",
+					"    throw new Error('Signing formData is not possible via Postman scripts');",
+					"} ",
+					"",
+					"var txnId = \"random-postman-txn-\" + Math.random().toString(36).substr(2, 9);",
+					"pm.environment.set(\"txnId\", txnId);",
+					"",
+					"var externalUserId = \"random-postman-user-\" + Math.random().toString(36).substr(2, 9);",
+					"pm.environment.set(\"externalUserId\", externalUserId);",
+					"",
+					"if (pm.request.body && pm.request.body.mode === 'raw' && pm.request.url.getPath() === '/resources/kyt/misc/txns/import') {",
+					"    var body = pm.variables.replaceIn(pm.request.body.raw);",
+					"    pm.request.body.update(body);",
+					"    pm.request.headers.upsert({ key: 'Content-Type', value: 'application/x-ndjson' });",
+					"    valueToSign += body;",
+					"}   ",
+					"else if (pm.request.body) {",
+					"    valueToSign += pm.request.body;",
+					"}",
+					"",
+					"valueToSign = valueToSign.replace(\"{{sumsub_root_url}}\", '')",
+					"        .replace(\"{{order}}\", encodeURIComponent(pm.variables.get(\"order\")))",
+					"        .replace(\"{{ownershipStatus}}\", encodeURIComponent(pm.variables.get(\"ownershipStatus\")))",
+					"        .replace(\"{{type}}\", encodeURIComponent(pm.variables.get(\"type\")))",
+					"        .replace(\"{{limit}}\", encodeURIComponent(pm.variables.get(\"limit\")))",
+					"        .replace(\"{{offset}}\", encodeURIComponent(pm.variables.get(\"offset\")))",
+					"        .replace(\"{{unsetKey}}\", encodeURIComponent(pm.variables.get(\"unsetKey\")))",
+					"        .replace(\"{{ignoreErrors}}\", encodeURIComponent(pm.variables.get(\"ignoreErrors\")))",
+					"        .replace(\"{{scoreSavedTxns}}\", encodeURIComponent(pm.variables.get(\"scoreSavedTxns\")))",
+					"        .replace(\"{{applicantId}}\", encodeURIComponent(pm.variables.get(\"applicantId\")))",
+					"        .replace(\"{{accessToken}}\", encodeURIComponent(pm.variables.get(\"accessToken\")))",
+					"        .replace(\"{{levelName}}\", encodeURIComponent(pm.variables.get(\"levelName\")))",
+					"        .replace(\"{{noteId}}\", encodeURIComponent(pm.variables.get(\"noteId\")))",
+					"        .replace(\"{{id}}\", encodeURIComponent(pm.variables.get(\"id\")))",
+					"        .replace(\"{{externalUserId}}\", encodeURIComponent(pm.variables.get(\"externalUserId\")))",
+					"        .replace(\"{{existingTxnId}}\", encodeURIComponent(pm.variables.get(\"existingTxnId\")))",
+					"        .replace(\"{{userId}}\", encodeURIComponent(pm.variables.get(\"userId\")))",
+					"        .replace(\"{{txnId}}\", encodeURIComponent(pm.variables.get(\"txnId\")));",
+					"",
+					"var signature = CryptoJS.enc.Hex.stringify(CryptoJS.HmacSHA256(valueToSign,  secretKey));",
+					"",
+					"pm.request.headers.upsert({",
+					"    key: \"X-App-Token\",",
+					"    value: pm.variables.get(\"app-token\")",
+					"});",
+					"",
+					"pm.request.headers.upsert({",
+					"    key: \"X-App-Access-Ts\",",
+					"    value: stamp",
+					"});",
+					"",
+					"pm.request.headers.upsert({",
+					"    key: \"X-App-Access-Sig\",",
+					"    value: signature",
+					"});"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "sumsub_root_url",
+			"value": "https://api.sumsub.com"
+		},
+		{
+			"key": "app-token",
+			"value": ""
+		},
+		{
+			"key": "secret-key",
+			"value": ""
+		},
+		{
+			"key": "id",
+			"value": ""
+		},
+		{
+			"key": "applicantId",
+			"value": ""
+		},
+		{
+			"key": "userId",
+			"value": ""
+		},
+		{
+			"key": "existingTxnId",
+			"value": ""
+		},
+		{
+			"key": "noteId",
+			"value": ""
+		},
+		{
+			"key": "levelName",
+			"value": ""
+		},
+		{
+			"key": "accessToken",
+			"value": ""
+		},
+		{
+			"key": "ignoreErrors",
+			"value": "True"
+		},
+		{
+			"key": "scoreSavedTxns",
+			"value": "True"
+		},
+		{
+			"key": "unsetKey",
+			"value": "customProperty"
+		},
+		{
+			"key": "limit",
+			"value": "10"
+		},
+		{
+			"key": "order",
+			"value": "-createdAt"
+		},
+		{
+			"key": "type",
+			"value": "crypto"
+		},
+		{
+			"key": "ownershipStatus",
+			"value": "confirmed"
+		},
+		{
+			"key": "offset",
+			"value": "0"
+		}
+	]
+}
