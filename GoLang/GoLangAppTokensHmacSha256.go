@@ -1,12 +1,12 @@
 package main
 
 import (
-	"./model"
 	"bytes"
 	"crypto/hmac"
 	"crypto/sha256"
 	"encoding/hex"
 	"encoding/json"
+	"example/model"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -49,18 +49,17 @@ func main() {
 	applicant = GetApplicantInfo(applicant)
 
 	// https://docs.sumsub.com/reference/generate-access-token-query
-	accessToken := GenerateAccessToken(applicant, levelName)
+	accessToken := GenerateAccessToken(applicant)
 
 	fmt.Println(accessToken.Token)
 }
 
-func GenerateAccessToken(applicant model.Applicant, levelName string) model.AccessToken {
+func GenerateAccessToken(applicant model.Applicant) model.AccessToken {
 	postBody, _ := json.Marshal(model.AccessToken{
-		userId: applicant.ExternalUserID,
-		levelName:   levelName,
+		UserId: applicant.ExternalUserID,
 	})
 
-	b, err := _makeSumsubRequest("/resources/accessTokens/sdk,
+	b, err := _makeSumsubRequest("/resources/accessTokens/sdk",
 		"POST",
 		"application/json",
 		postBody)
@@ -168,9 +167,9 @@ func AddDocument(applicantId string) model.IdDoc {
 	return doc
 }
 
-//X-App-Token - an App Token that you generate in our dashboard
-//X-App-Access-Sig - signature of the request in the hex format (see below)
-//X-App-Access-Ts - number of seconds since Unix Epoch in UTC
+// X-App-Token - an App Token that you generate in our dashboard
+// X-App-Access-Sig - signature of the request in the hex format (see below)
+// X-App-Access-Ts - number of seconds since Unix Epoch in UTC
 func _makeSumsubRequest(path, method, contentType string, body []byte) ([]byte, error) {
 
 	request, err := http.NewRequest(method, URL+path, bytes.NewBuffer(body))
